@@ -10,7 +10,8 @@ Create a virtualenv in your usual way for example
 python -m venv .env
 ```
 
-then install the dependencies
+then install the dependencies and pre-commit
 ```
 pip install -r requirements.txt
+pre-commit install
 ```
