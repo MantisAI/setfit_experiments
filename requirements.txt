@@ -1,1 +1,7 @@
+# Libraries needed for experiments
 datasets==2.3.2
+typer==0.6.1
+setfit==0.3.0
+scikit-learn==1.1.2
+# Test, linting etc
+pre-commit==2.20.0
