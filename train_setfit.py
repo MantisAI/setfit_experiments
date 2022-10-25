@@ -12,7 +12,7 @@ def train(
     batch_size: int = 16,
     test_size: int = 100,
 ):
-    dataset = load_dataset("imdb")
+    dataset = load_dataset(data_path)
 
     num_classes = len(set(dataset["train"]["label"]))
     train_dataset = (

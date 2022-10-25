@@ -11,7 +11,7 @@ def convert_data(data):
 
 
 def train_tfidf_svm(data_path="imdb", n_shot: int = 8):
-    dataset = load_dataset("imdb")
+    dataset = load_dataset(data_path)
 
     num_classes = len(set(dataset["train"]["label"]))
     train_dataset = dataset["train"].shuffle(42).select(range(n_shot))
