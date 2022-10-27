@@ -1,4 +1,5 @@
 from pathlib import Path
+import json
 import os
 
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -14,16 +15,20 @@ app = typer.Typer()
 
 @app.command()
 def train_tfidf_svm(
-    data_path="imdb", n_shot: int = 8, n_folds: int = 5, results_dir="results"
+    data_path="imdb",
+    n_shot: int = 8,
+    n_folds: int = 5,
+    test_size: int = 100,
+    results_dir="results",
 ):
-    dataset = load_data(data_path)
+    dataset = load_data(data_path, test_size)
 
     num_classes = len(set(dataset["train"]["label"]))
     sample_size = num_classes * n_shot
 
     results = []
     for fold in range(n_folds):
-        train_dataset = sample_fold(dataset, fold, sample_size)
+        train_dataset = sample_fold(dataset["train"], fold, sample_size)
 
         X_train, y_train = convert_data(train_dataset)
         X_test, y_test = convert_data(dataset["test"])

@@ -9,12 +9,12 @@ def test_train_tfidf_svm(tmp_path):
         app,
         [
             "--data-path",
-            "ag-news",
+            "ag_news",
             "--n-folds",
             "3",
             "--test-size",
             "5",
-            "results-dir",
+            "--results-dir",
             tmp_path,
         ],
     )
