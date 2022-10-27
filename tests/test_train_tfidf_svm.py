@@ -18,3 +18,4 @@ def test_train_tfidf_svm(tmp_path):
             tmp_path,
         ],
     )
+    assert result.exit_code == 0

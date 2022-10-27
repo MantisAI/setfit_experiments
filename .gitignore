@@ -1,5 +1,6 @@
-# Venv
+# Venv, direnv
 .env
+.envrc
 
 # Data
 data
