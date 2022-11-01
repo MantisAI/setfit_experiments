@@ -1,9 +1,12 @@
 # Libraries needed for experiments
 datasets==2.3.2
-typer==0.6.1
 setfit==0.3.0
 scikit-learn==1.1.2
 openai==0.24.0
+# CLI, serialisation, requests
+typer==0.6.1
+srsly==2.4.5
+requests==2.28.1
 # Test, linting etc
 pre-commit==2.20.0
 pytest==7.2.0
