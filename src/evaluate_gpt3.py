@@ -1,6 +1,7 @@
 from pathlib import Path
 import json
 import os
+import re
 
 from sklearn.metrics import accuracy_score
 from tqdm import tqdm
@@ -11,14 +12,17 @@ from src.data import load_data, sample_fold
 
 app = typer.Typer()
 
+id2label = {0: "world", 1: "sports", 2: "business", 3: "sci/tech"}
+
 
 def create_prompt(dataset):
-    labels = list(set([str(example["label"]) for example in dataset]))
+    labels = list(set([id2label[example["label"]] for example in dataset]))
 
     prompt = "Classify the sentence as one of {}\n".format(",".join(labels))
 
     for example in dataset:
         text, label = example["text"], example["label"]
+        label = id2label[label]
         prompt += f"Text:{text}\n"
         prompt += f"Label:{label}\n\n"
 
@@ -28,14 +32,14 @@ def create_prompt(dataset):
 def gpt3(model, prompt):
     openai.api_key = os.getenv("OPENAI_API_KEY")
     response = openai.Completion.create(
-        model=model, prompt=prompt, temperature=0.75, max_tokens=1
+        model=model, prompt=prompt, temperature=0.75, max_tokens=10
     )
     return response["choices"][0]["text"]
 
 
 @app.command()
 def evaluate(
-    data_path="imdb",
+    data_path="ag_news",
     model="text-davinci-002",
     n_shot: int = 8,
     n_folds: int = 5,
@@ -50,7 +54,7 @@ def evaluate(
 
     results = []
     for fold in range(n_folds):
-        train_dataset = sample_fold(dataset["train"], 1, sample_size)
+        # TODO: Test dataset is always the same across folds
         test_dataset = dataset["test"]
 
         prompt = create_prompt(train_dataset)
@@ -65,7 +69,7 @@ def evaluate(
 
             y_pred.append(pred)
 
-        y_test = [str(example["label"]) for example in test_dataset]
+        y_test = [id2label[example["label"]] for example in test_dataset]
 
         score = accuracy_score(y_test, y_pred)
 
