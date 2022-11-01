@@ -48,13 +48,13 @@ def evaluate(
     sample_size = num_classes * n_shot
     print(f"Sample size: {sample_size}")
 
-    train_dataset = sample_fold(dataset["train"], 1, sample_size)
-    test_dataset = dataset["test"]
-
-    prompt = create_prompt(train_dataset)
-
     results = []
     for fold in range(n_folds):
+        train_dataset = sample_fold(dataset["train"], 1, sample_size)
+        test_dataset = dataset["test"]
+
+        prompt = create_prompt(train_dataset)
+
         y_pred = []
         for example in tqdm(test_dataset):
             text = example["text"]
