@@ -1,3 +1,5 @@
+import os
+
 import srsly
 import typer
 
@@ -9,7 +11,11 @@ app = typer.Typer()
 
 @app.command()
 def create_data(
-    data_path, dataset="imdb", n_shot: int = 8, test_size: int = 100, split="train"
+    data_dir="data",
+    dataset="imdb",
+    n_shot: int = 8,
+    test_size: int = 100,
+    split="train",
 ):
     data = load_data(dataset, test_size)
 
@@ -17,14 +23,11 @@ def create_data(
     sample_size = num_classes * n_shot
 
     if split == "train":
-        dataset = sample_fold(data["train"], 1, sample_size)
+        data = sample_fold(data["train"], 1, sample_size)
     else:
-        dataset = data["test"]
+        data = data["test"]
 
-    data = []
-    for example in dataset:
-        data.append({"text": example["text"], "target": example["label"]})
-
+    data_path = os.path.join(data_dir, f"{dataset}_{n_shot}shot_{split}.jsonl")
     srsly.write_jsonl(data_path, data)
 
 
