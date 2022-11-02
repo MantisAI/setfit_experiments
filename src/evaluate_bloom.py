@@ -7,16 +7,15 @@ from tqdm import tqdm
 import requests
 import typer
 
-from src.data import load_data, sample_fold
+from src.data import load_data, sample_data, LABEL_MAP
 
 app = typer.Typer()
 
 API_URL = "https://api-inference.huggingface.co/models"
 
 
-def create_prompt(dataset):
-    labels = list(set([str(example["label"]) for example in dataset]))
-
+def create_prompt(dataset, id2label):
+    labels = [id2label[label] for label in set(dataset["label"])]
     prompt = "Classify the sentence as one of {}\n".format(",".join(labels))
 
     for example in dataset:
@@ -45,18 +44,16 @@ def evaluate(
     test_size: int = 100,
     results_dir="results",
 ):
-    dataset = load_data(data_path, test_size)
+    dataset = load_data(data_path)
 
-    num_classes = len(set(dataset["train"]["label"]))
-    sample_size = num_classes * n_shot
-    print(f"Sample size: {sample_size}")
+    id2label = LABEL_MAP[data_path]
 
     results = []
     for fold in range(n_folds):
-        train_dataset = sample_fold(dataset["train"], fold, sample_size)
-        test_dataset = dataset["test"]
+        sample_dataset = sample_data(dataset, n_shot, test_size, fold)
+        test_dataset = sample_dataset["test"]
 
-        prompt = create_prompt(train_dataset)
+        prompt = create_prompt(sample_dataset["train"], id2label)
 
         y_pred = []
         for example in tqdm(test_dataset):
@@ -68,7 +65,7 @@ def evaluate(
 
             y_pred.append(pred)
 
-        y_test = [str(example["label"]) for example in test_dataset]
+        y_test = [id2label[example["label"]] for example in test_dataset]
 
         score = accuracy_score(y_test, y_pred)
 

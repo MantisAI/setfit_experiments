@@ -3,6 +3,9 @@ import json
 from datasets import load_dataset, Dataset
 
 
+LABEL_MAP = {"ag_news": {0: "world", 1: "sports", 2: "business", 3: "sci/tech"}}
+
+
 def read_jsonl(data_path):
     texts = []
     labels = []
@@ -17,14 +20,24 @@ def read_jsonl(data_path):
     return {"text": texts, "label": labels}
 
 
-def load_data(data_path, test_size):
+def load_data(data_path):
     if "jsonl" in data_path:
         data = read_jsonl(data_path)
         dataset = Dataset.from_dict(data)
-        dataset = dataset.train_test_split(test_size=test_size)
     else:
         dataset = load_dataset(data_path)
-        dataset["test"] = dataset["test"].select(range(test_size))
+
+    return dataset
+
+
+def sample_data(dataset, num_samples_per_class, test_size, seed=42):
+    num_classes = len(set(dataset["train"]["label"]))
+    train_size = num_classes * num_samples_per_class
+
+    dataset = dataset["train"].train_test_split(
+        train_size=train_size, stratify_by_column="label", seed=seed
+    )
+    dataset["test"] = dataset["test"].select(range(test_size))
 
     return dataset
 
@@ -32,7 +45,3 @@ def load_data(data_path, test_size):
 def convert_data(data):
     X, y = zip(*[(example["text"], example["label"]) for example in data])
     return X, y
-
-
-def sample_fold(dataset, fold_n, sample_size):
-    return dataset.shuffle(seed=fold_n).select(range(sample_size))

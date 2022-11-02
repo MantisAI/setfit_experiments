@@ -8,7 +8,7 @@ from sklearn.pipeline import Pipeline
 from datasets import load_dataset
 import typer
 
-from src.data import load_data, sample_fold, convert_data
+from src.data import load_data, sample_data, convert_data
 
 app = typer.Typer()
 
@@ -21,17 +21,14 @@ def train_tfidf_svm(
     test_size: int = 100,
     results_dir="results",
 ):
-    dataset = load_data(data_path, test_size)
-
-    num_classes = len(set(dataset["train"]["label"]))
-    sample_size = num_classes * n_shot
+    dataset = load_data(data_path)
 
     results = []
     for fold in range(n_folds):
-        train_dataset = sample_fold(dataset["train"], fold, sample_size)
+        sample_dataset = sample_data(dataset, n_shot, test_size, fold)
 
-        X_train, y_train = convert_data(train_dataset)
-        X_test, y_test = convert_data(dataset["test"])
+        X_train, y_train = convert_data(sample_dataset["train"])
+        X_test, y_test = convert_data(sample_dataset["test"])
 
         model = Pipeline(
             [

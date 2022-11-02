@@ -8,16 +8,13 @@ from tqdm import tqdm
 import openai
 import typer
 
-from src.data import load_data, sample_fold
+from src.data import load_data, sample_data, LABEL_MAP
 
 app = typer.Typer()
 
-id2label = {0: "world", 1: "sports", 2: "business", 3: "sci/tech"}
 
-
-def create_prompt(dataset):
-    labels = list(set([id2label[example["label"]] for example in dataset]))
-
+def create_prompt(dataset, id2label):
+    labels = [id2label[label] for label in set(dataset["label"])]
     prompt = "Classify the sentence as one of {}\n".format(",".join(labels))
 
     for example in dataset:
@@ -46,18 +43,16 @@ def evaluate(
     test_size: int = 100,
     results_dir="results",
 ):
-    dataset = load_data(data_path, test_size)
+    dataset = load_data(data_path)
 
-    num_classes = len(set(dataset["train"]["label"]))
-    sample_size = num_classes * n_shot
-    print(f"Sample size: {sample_size}")
+    id2label = LABEL_MAP[data_path]
 
     results = []
     for fold in range(n_folds):
-        # TODO: Test dataset is always the same across folds
-        test_dataset = dataset["test"]
+        sample_dataset = sample_data(dataset, n_shot, test_size, fold)
+        test_dataset = sample_dataset["test"]
 
-        prompt = create_prompt(train_dataset)
+        prompt = create_prompt(sample_dataset["train"], id2label)
 
         y_pred = []
         for example in tqdm(test_dataset):

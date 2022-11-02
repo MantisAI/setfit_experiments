@@ -6,7 +6,7 @@ from setfit import SetFitModel, SetFitTrainer
 from datasets import load_dataset, Dataset
 import typer
 
-from src.data import load_data, sample_fold
+from src.data import load_data, sample_data
 
 app = typer.Typer()
 
@@ -23,22 +23,20 @@ def train(
     n_folds: int = 5,
     results_dir="results",
 ):
-    dataset = load_data(data_path, test_size)
-
-    num_classes = len(set(dataset["train"]["label"]))
-    sample_size = num_classes * n_shot
+    dataset = load_data(data_path)
 
     results = []
     for fold in range(n_folds):
-        train_dataset = sample_fold(dataset["train"], fold, sample_size)
-        eval_dataset = dataset["test"]
+        sample_dataset = sample_data(
+            dataset, num_samples_per_class=n_shot, test_size=test_size, seed=fold
+        )
 
         model = SetFitModel.from_pretrained(model_path)
 
         trainer = SetFitTrainer(
             model=model,
-            train_dataset=train_dataset,
-            eval_dataset=eval_dataset,
+            train_dataset=sample_dataset["train"],
+            eval_dataset=sample_dataset["test"],
             num_iterations=num_iterations,
             num_epochs=epochs,
             batch_size=batch_size,
