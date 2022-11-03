@@ -31,7 +31,7 @@ def gpt3(model, prompt):
     response = openai.Completion.create(
         model=model, prompt=prompt, temperature=0.75, max_tokens=10
     )
-    return response["choices"][0]["text"]
+    return response["choices"][0]["text"].split("\n\n")[0]
 
 
 @app.command()
@@ -56,17 +56,21 @@ def evaluate(
 
         prompt = create_prompt(sample_dataset["train"], id2label)
 
+        y_test = []
         y_pred = []
-        for example in tqdm(test_dataset):
+        for i, example in tqdm(enumerate(test_dataset)):
             text = example["text"]
 
             prompt += f"Text:{text}\nLabel:"
 
-            pred = gpt3(model, prompt)
+            try:
+                pred = gpt3(model, prompt)
+            except:
+                print("Exceeded #tokens or errored")
+                continue
 
             y_pred.append(pred)
-
-        y_test = [id2label[example["label"]] for example in test_dataset]
+            y_test.append(id2label[test_dataset["label"][i]])
 
         score = accuracy_score(y_test, y_pred)
 

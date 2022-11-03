@@ -53,7 +53,7 @@ def train(
     results_path = os.path.join(results_dir, data_path, "setfit")
     Path(results_path).mkdir(parents=True, exist_ok=True)
 
-    with open(os.path.join(results_path, f"{n_shot}shot.json"), "w") as f:
+    with open(os.path.join(results_path, f"{n_shot}.json"), "w") as f:
         f.write(json.dumps(results))
 
 

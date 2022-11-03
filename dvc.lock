@@ -5,31 +5,130 @@ stages:
       100 --n-folds 5
     deps:
     - path: src/train_tfidf_svm.py
-      md5: 7b8bc0c0ab783d22a6e0c1867108cee0
-      size: 1497
+      md5: 4b47e41ac1f726c9aef41c1307a7940a
+      size: 1407
     outs:
     - path: results/ag_news/tfidf_svm/5.json
-      md5: 9426c26638e9ff1227362d1a210ccf2f
-      size: 220
+      md5: 0f5b7651924400ba3322fbc48f558a1d
+      size: 219
   tfidf_svm@3:
     cmd: python src/train_tfidf_svm.py --data-path ag_news --n-shot "3" --test-size
       100 --n-folds 5
     deps:
     - path: src/train_tfidf_svm.py
-      md5: 7b8bc0c0ab783d22a6e0c1867108cee0
-      size: 1497
+      md5: 4b47e41ac1f726c9aef41c1307a7940a
+      size: 1407
     outs:
     - path: results/ag_news/tfidf_svm/3.json
-      md5: 668d979428ad594664d4a2f83a30e265
+      md5: 38850192f55a284425711b526e6bface
       size: 219
   tfidf_svm@8:
     cmd: python src/train_tfidf_svm.py --data-path ag_news --n-shot "8" --test-size
       100 --n-folds 5
     deps:
     - path: src/train_tfidf_svm.py
-      md5: 7b8bc0c0ab783d22a6e0c1867108cee0
-      size: 1497
+      md5: 4b47e41ac1f726c9aef41c1307a7940a
+      size: 1407
     outs:
     - path: results/ag_news/tfidf_svm/8.json
-      md5: 9f5a4746f4b1a2f5aa6aeddd9e02a727
+      md5: dff542ae9a8876517c9e073ce7d25f0a
+      size: 219
+  setfit@5:
+    cmd: python src/train_setfit.py --data-path ag_news --n-shot "5" --test-size 100
+      --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 43818491057c1c01dacb0d32932d6506
+      size: 1596
+    outs:
+    - path: results/ag_news/setfit/5.json
+      md5: 862ac18a567b2ef0fb25c9502347d5cc
+      size: 219
+  gpt3@5:
+    cmd: python src/evaluate_gpt3.py --data-path ag_news --n-shot "5" --test-size
+      10 --n-folds 3
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: a8e8e7b34ae98be717185467f2849523
+      size: 2312
+    outs:
+    - path: results/ag_news/gpt3/5.json
+      md5: 0823f6458d57c75b639445085e4b2037
+      size: 129
+  gpt3@8:
+    cmd: python src/evaluate_gpt3.py --data-path ag_news --n-shot "8" --test-size
+      10 --n-folds 3
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: a8e8e7b34ae98be717185467f2849523
+      size: 2312
+    outs:
+    - path: results/ag_news/gpt3/8.json
+      md5: 073a52a51d85410552f78edcf8a2b4ac
+      size: 129
+  gpt3@3:
+    cmd: python src/evaluate_gpt3.py --data-path ag_news --n-shot "3" --test-size
+      10 --n-folds 3
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: a8e8e7b34ae98be717185467f2849523
+      size: 2312
+    outs:
+    - path: results/ag_news/gpt3/3.json
+      md5: ced84cffde156d3c12a2ddba130e217b
+      size: 129
+  setfit@3:
+    cmd: python src/train_setfit.py --data-path ag_news --n-shot "3" --test-size 100
+      --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 43818491057c1c01dacb0d32932d6506
+      size: 1596
+    outs:
+    - path: results/ag_news/setfit/3.json
+      md5: 1d1dea9a2bbcada7f943f9ee1e5453b7
       size: 220
+  setfit@8:
+    cmd: python src/train_setfit.py --data-path ag_news --n-shot "8" --test-size 100
+      --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 43818491057c1c01dacb0d32932d6506
+      size: 1596
+    outs:
+    - path: results/ag_news/setfit/8.json
+      md5: 5afd722687526243f68933a819535cc1
+      size: 220
+  setfit@16:
+    cmd: python src/train_setfit.py --data-path ag_news --n-shot "16" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 43818491057c1c01dacb0d32932d6506
+      size: 1596
+    outs:
+    - path: results/ag_news/setfit/16.json
+      md5: c95c740b7454a616ededfc44fc4703ab
+      size: 220
+  tfidf_svm@16:
+    cmd: python src/train_tfidf_svm.py --data-path ag_news --n-shot "16" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 4b47e41ac1f726c9aef41c1307a7940a
+      size: 1407
+    outs:
+    - path: results/ag_news/tfidf_svm/16.json
+      md5: 0bb96b7b2c94bf317ebf0988c8a24abd
+      size: 219
+  gpt3@16:
+    cmd: python src/evaluate_gpt3.py --data-path ag_news --n-shot "16" --test-size
+      10 --n-folds 3
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: a8e8e7b34ae98be717185467f2849523
+      size: 2312
+    outs:
+    - path: results/ag_news/gpt3/16.json
+      md5: b20446f012e1a3804c36837a3ff31bd7
+      size: 159
