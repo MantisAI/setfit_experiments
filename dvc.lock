@@ -5,33 +5,33 @@ stages:
       100 --n-folds 5
     deps:
     - path: src/train_tfidf_svm.py
-      md5: 4b47e41ac1f726c9aef41c1307a7940a
-      size: 1407
+      md5: 62643c4b2b7e9a344f30067c57a994e7
+      size: 1523
     outs:
     - path: results/ag_news/tfidf_svm/5.json
-      md5: 0f5b7651924400ba3322fbc48f558a1d
-      size: 219
+      md5: 8d431055d5d667077524e279800040ab
+      size: 220
   tfidf_svm@3:
     cmd: python src/train_tfidf_svm.py --data-path ag_news --n-shot "3" --test-size
       100 --n-folds 5
     deps:
     - path: src/train_tfidf_svm.py
-      md5: 4b47e41ac1f726c9aef41c1307a7940a
-      size: 1407
+      md5: 62643c4b2b7e9a344f30067c57a994e7
+      size: 1523
     outs:
     - path: results/ag_news/tfidf_svm/3.json
-      md5: 38850192f55a284425711b526e6bface
-      size: 219
+      md5: de6b038b0650065f91ab6c83a4cce979
+      size: 220
   tfidf_svm@8:
     cmd: python src/train_tfidf_svm.py --data-path ag_news --n-shot "8" --test-size
       100 --n-folds 5
     deps:
     - path: src/train_tfidf_svm.py
-      md5: 4b47e41ac1f726c9aef41c1307a7940a
-      size: 1407
+      md5: 62643c4b2b7e9a344f30067c57a994e7
+      size: 1523
     outs:
     - path: results/ag_news/tfidf_svm/8.json
-      md5: dff542ae9a8876517c9e073ce7d25f0a
+      md5: 7c1444b455dad2b34848db6760a222eb
       size: 219
   setfit@5:
     cmd: python src/train_setfit.py --data-path ag_news --n-shot "5" --test-size 100
@@ -115,11 +115,11 @@ stages:
       100 --n-folds 5
     deps:
     - path: src/train_tfidf_svm.py
-      md5: 4b47e41ac1f726c9aef41c1307a7940a
-      size: 1407
+      md5: 62643c4b2b7e9a344f30067c57a994e7
+      size: 1523
     outs:
     - path: results/ag_news/tfidf_svm/16.json
-      md5: 0bb96b7b2c94bf317ebf0988c8a24abd
+      md5: 89ec344982f8571af2d6fb236b0ce59e
       size: 219
   gpt3@16:
     cmd: python src/evaluate_gpt3.py --data-path ag_news --n-shot "16" --test-size
@@ -136,9 +136,20 @@ stages:
     cmd: python src/create_graph.py --results-path results --figures-path figures
     deps:
     - path: src/create_graph.py
-      md5: e1c51115f84304416faf8067e441f8b9
-      size: 1418
+      md5: 35a7aeccbb228aa92743ee7adc8964f9
+      size: 2048
     outs:
     - path: figures/ag_news.png
-      md5: 700128316438b120afb5853bd12fa39f
-      size: 38980
+      md5: 21b1e6839935a9f96b723141e19cd9ef
+      size: 39100
+  tfidf_svm@all:
+    cmd: python src/train_tfidf_svm.py --data-path ag_news --n-shot "all" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 62643c4b2b7e9a344f30067c57a994e7
+      size: 1523
+    outs:
+    - path: results/ag_news/tfidf_svm/all.json
+      md5: c26b06ee84298a8753dca7378522e84f
+      size: 290

@@ -16,7 +16,7 @@ app = typer.Typer()
 @app.command()
 def train_tfidf_svm(
     data_path="imdb",
-    n_shot: int = 8,
+    n_shot: str = "8",
     n_folds: int = 5,
     test_size: int = 100,
     results_dir="results",
@@ -25,7 +25,11 @@ def train_tfidf_svm(
 
     results = []
     for fold in range(n_folds):
-        sample_dataset = sample_data(dataset, n_shot, test_size, fold)
+        if n_shot == "all":
+            sample_dataset = dataset
+        else:
+            n_shot = int(n_shot)
+            sample_dataset = sample_data(dataset, n_shot, test_size, fold)
 
         X_train, y_train = convert_data(sample_dataset["train"])
         X_test, y_test = convert_data(sample_dataset["test"])

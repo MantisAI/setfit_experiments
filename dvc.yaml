@@ -5,6 +5,7 @@ stages:
       - 5
       - 8
       - 16
+      - all
     do:
       cmd: python src/train_tfidf_svm.py --data-path ag_news --n-shot "${item}" --test-size 100 --n-folds 5
       deps:
