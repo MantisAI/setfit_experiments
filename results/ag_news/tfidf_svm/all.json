@@ -1,1 +1,1 @@
-[{"fold": 0, "metrics": {"accuracy": 0.9068421052631579}}, {"fold": 1, "metrics": {"accuracy": 0.9064473684210527}}, {"fold": 2, "metrics": {"accuracy": 0.9071052631578947}}, {"fold": 3, "metrics": {"accuracy": 0.9067105263157895}}, {"fold": 4, "metrics": {"accuracy": 0.9064473684210527}}]
+[{"fold": 0, "metrics": {"accuracy": 0.9067105263157895}}, {"fold": 1, "metrics": {"accuracy": 0.9071052631578947}}, {"fold": 2, "metrics": {"accuracy": 0.9075}}, {"fold": 3, "metrics": {"accuracy": 0.9075}}, {"fold": 4, "metrics": {"accuracy": 0.9068421052631579}}]

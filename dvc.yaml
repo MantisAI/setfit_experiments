@@ -46,3 +46,18 @@ stages:
     outs:
       - figures/ag_news.png:
           cache: false
+
+  data:
+    foreach:
+      - 3
+      - 5
+      - 8
+      - 16
+    do:
+      cmd: |
+        python src/create_data.py --dataset ag_news --n-shot ${item} --test-size 100 --n-folds 5 --split train
+        python src/create_data.py --dataset ag_news --n-shot ${item} --test-size 100 --n-folds 5 --split test
+      deps:
+        - src/create_data.py
+      outs:
+        - data/ag_news/${item}
