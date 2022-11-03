@@ -38,3 +38,10 @@ stages:
       outs:
         - results/ag_news/gpt3/${item}.json:
             cache: false
+  graph:
+    cmd: python src/create_graph.py --results-path results --figures-path figures
+    deps:
+      - src/create_graph.py
+    outs:
+      - figures/ag_news.png:
+          cache: false

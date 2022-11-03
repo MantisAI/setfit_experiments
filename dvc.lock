@@ -132,3 +132,13 @@ stages:
     - path: results/ag_news/gpt3/16.json
       md5: b20446f012e1a3804c36837a3ff31bd7
       size: 159
+  graph:
+    cmd: python src/create_graph.py --results-path results --figures-path figures
+    deps:
+    - path: src/create_graph.py
+      md5: e1c51115f84304416faf8067e441f8b9
+      size: 1418
+    outs:
+    - path: figures/ag_news.png
+      md5: 700128316438b120afb5853bd12fa39f
+      size: 38980
