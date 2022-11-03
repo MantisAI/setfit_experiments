@@ -7,7 +7,7 @@ from tqdm import tqdm
 import requests
 import typer
 
-from src.data import load_data, sample_data, LABEL_MAP
+from src.data import load_data, sample_data
 
 app = typer.Typer()
 
@@ -46,7 +46,9 @@ def evaluate(
 ):
     dataset = load_data(data_path)
 
-    id2label = LABEL_MAP[data_path]
+    id2label = {
+        i: label for i, label in enumerate(dataset["train"].features["label"].names)
+    }
 
     results = []
     for fold in range(n_folds):

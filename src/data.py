@@ -3,9 +3,6 @@ import json
 from datasets import load_dataset, Dataset
 
 
-LABEL_MAP = {"ag_news": {0: "world", 1: "sports", 2: "business", 3: "sci/tech"}}
-
-
 def read_jsonl(data_path):
     texts = []
     labels = []
