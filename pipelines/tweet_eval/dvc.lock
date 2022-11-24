@@ -130,16 +130,16 @@ stages:
       --dataset tweet_eval
     deps:
     - path: results
-      md5: 9b2636a54d6acb4fc11931db8e8dbcaf.dir
-      size: 11294
+      md5: 6f797239fac2516dc4770f42cb154d93.dir
+      size: 11295
       nfiles: 53
     - path: src/create_graph.py
-      md5: c9950224b801ee81262c1a5dc2cb7643
-      size: 1900
+      md5: 3b4786fec7485932417795c5834cd7f3
+      size: 1963
     outs:
     - path: figures/tweet_eval.png
-      md5: 4ad5b45033161c3568673d7127708c05
-      size: 30848
+      md5: cbbb896b618455ece30990c0df15bf6e
+      size: 29727
   data@3:
     cmd: "python src/create_data.py --dataset tweet_eval --n-shot 3 --test-size 100\
       \ --n-folds 5 --split train\npython src/create_data.py --dataset tweet_eval\

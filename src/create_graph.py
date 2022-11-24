@@ -45,8 +45,14 @@ def create_graph(results_path="results", dataset="imdb", figures_path="figures")
     few_shot_data = pd.DataFrame(few_shot_data)
     line_plot = sns.lineplot(few_shot_data, x="n_shot", y="accuracy", hue="model")
 
-    for result in all_data:
-        line_plot.axhline(result["accuracy"], linestyle="--", label=result["model"])
+    all_colors = ["r", "b"]
+    for i, result in enumerate(all_data):
+        line_plot.axhline(
+            result["accuracy"],
+            linestyle="--",
+            label=result["model"],
+            color=all_colors[i],
+        )
 
     handles, labels = line_plot.get_legend_handles_labels()
     line_plot.legend(handles, labels)
