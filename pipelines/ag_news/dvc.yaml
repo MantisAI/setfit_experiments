@@ -8,6 +8,7 @@ stages:
       - all
     do:
       cmd: python src/train_tfidf_svm.py --data-path ag_news --n-shot "${item}" --test-size 100 --n-folds 5
+      wdir: ../..
       deps:
         - src/train_tfidf_svm.py
       outs:
@@ -21,6 +22,7 @@ stages:
       - 16
     do:
       cmd: python src/train_setfit.py --data-path ag_news --n-shot "${item}" --test-size 100 --n-folds 5
+      wdir: ../..
       deps:
         - src/train_setfit.py
       outs:
@@ -33,16 +35,19 @@ stages:
       - 8
       - 16
     do:
-      cmd: python src/evaluate_gpt3.py --data-path ag_news --n-shot "${item}" --test-size 10 --n-folds 3
+      cmd: python src/evaluate_gpt3.py --data-path ag_news --n-shot "${item}" --test-size 10 --n-folds 5
+      wdir: ../..
       deps:
         - src/evaluate_gpt3.py
       outs:
         - results/ag_news/gpt3/${item}.json:
             cache: false
   graph:
-    cmd: python src/create_graph.py --results-path results --figures-path figures
+    cmd: python src/create_graph.py --results-path results --figures-path figures --dataset ag_news
+    wdir: ../..
     deps:
       - src/create_graph.py
+      - results
     outs:
       - figures/ag_news.png:
           cache: false
@@ -57,6 +62,7 @@ stages:
       cmd: |
         python src/create_data.py --dataset ag_news --n-shot ${item} --test-size 100 --n-folds 5 --split train
         python src/create_data.py --dataset ag_news --n-shot ${item} --test-size 100 --n-folds 5 --split test
+      wdir: ../..
       deps:
         - src/create_data.py
       outs:

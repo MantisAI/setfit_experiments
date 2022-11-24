@@ -22,8 +22,13 @@ def load_data(data_path):
         data = read_jsonl(data_path)
         dataset = Dataset.from_dict(data)
     else:
-        dataset = load_dataset(data_path)
+        if data_path == "tweet_eval":
+            dataset = load_dataset(data_path, "emotion")
+        else:
+            dataset = load_dataset(data_path)
 
+    if data_path == "trec":
+        dataset = dataset.rename_column("label-coarse", "label")
     return dataset
 
 

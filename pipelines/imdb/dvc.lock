@@ -1,0 +1,212 @@
+schema: '2.0'
+stages:
+  tfidf_svm@all:
+    cmd: python src/train_tfidf_svm.py --data-path imdb --n-shot "all" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 75db88ee99892d2aaf096f43a23178c8
+      size: 1525
+    outs:
+    - path: results/imdb/tfidf_svm/all.json
+      md5: 847ea2db9c8649d8b41211b772f37a0a
+      size: 233
+  tfidf_svm@3:
+    cmd: python src/train_tfidf_svm.py --data-path imdb --n-shot "3" --test-size 100
+      --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 75db88ee99892d2aaf096f43a23178c8
+      size: 1525
+    outs:
+    - path: results/imdb/tfidf_svm/3.json
+      md5: 456d7303312c6fc877d83c764754aa18
+      size: 220
+  tfidf_svm@5:
+    cmd: python src/train_tfidf_svm.py --data-path imdb --n-shot "5" --test-size 100
+      --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 75db88ee99892d2aaf096f43a23178c8
+      size: 1525
+    outs:
+    - path: results/imdb/tfidf_svm/5.json
+      md5: 177ec843587651dc5bde9c067c24cdd3
+      size: 220
+  tfidf_svm@8:
+    cmd: python src/train_tfidf_svm.py --data-path imdb --n-shot "8" --test-size 100
+      --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 75db88ee99892d2aaf096f43a23178c8
+      size: 1525
+    outs:
+    - path: results/imdb/tfidf_svm/8.json
+      md5: fe6c2fe9e77bd8cfb4e6b28670aaf0e0
+      size: 219
+  tfidf_svm@16:
+    cmd: python src/train_tfidf_svm.py --data-path imdb --n-shot "16" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 75db88ee99892d2aaf096f43a23178c8
+      size: 1525
+    outs:
+    - path: results/imdb/tfidf_svm/16.json
+      md5: 8e31687f78729d7db2b3fc46d22e662b
+      size: 220
+  setfit@3:
+    cmd: python src/train_setfit.py --data-path imdb --n-shot "3" --test-size 100
+      --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 43818491057c1c01dacb0d32932d6506
+      size: 1596
+    outs:
+    - path: results/imdb/setfit/3.json
+      md5: 28f170d41d97303a7e697f8093007e95
+      size: 218
+  setfit@5:
+    cmd: python src/train_setfit.py --data-path imdb --n-shot "5" --test-size 100
+      --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 43818491057c1c01dacb0d32932d6506
+      size: 1596
+    outs:
+    - path: results/imdb/setfit/5.json
+      md5: 7407ce76cf6ece9d1afa47f0676e55d0
+      size: 219
+  setfit@8:
+    cmd: python src/train_setfit.py --data-path imdb --n-shot "8" --test-size 100
+      --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 43818491057c1c01dacb0d32932d6506
+      size: 1596
+    outs:
+    - path: results/imdb/setfit/8.json
+      md5: 0360d0d948dbde51b08f7652f35a79a4
+      size: 220
+  setfit@16:
+    cmd: python src/train_setfit.py --data-path imdb --n-shot "16" --test-size 100
+      --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 43818491057c1c01dacb0d32932d6506
+      size: 1596
+    outs:
+    - path: results/imdb/setfit/16.json
+      md5: d40b51f1bfbe59b7c6e6597c9f8988a0
+      size: 220
+  gpt3@3:
+    cmd: python src/evaluate_gpt3.py --data-path imdb --n-shot "3" --test-size 10
+      --n-folds 5
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 08143f92adaaf77fc36e21d637abd3d3
+      size: 2524
+    outs:
+    - path: results/imdb/gpt3/3.json
+      md5: d4cf5c6f0561c0b092be857307712552
+      size: 230
+  gpt3@5:
+    cmd: python src/evaluate_gpt3.py --data-path imdb --n-shot "5" --test-size 10
+      --n-folds 5
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 08143f92adaaf77fc36e21d637abd3d3
+      size: 2524
+    outs:
+    - path: results/imdb/gpt3/5.json
+      md5: 975d5257f16aea87a988ad545f54e17c
+      size: 260
+  gpt3@8:
+    cmd: python src/evaluate_gpt3.py --data-path imdb --n-shot "8" --test-size 10
+      --n-folds 5
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 08143f92adaaf77fc36e21d637abd3d3
+      size: 2524
+    outs:
+    - path: results/imdb/gpt3/8.json
+      md5: 7fb46033b0d9baacab0c2c716239c298
+      size: 231
+  gpt3@16:
+    cmd: python src/evaluate_gpt3.py --data-path imdb --n-shot "16" --test-size 10
+      --n-folds 5
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 08143f92adaaf77fc36e21d637abd3d3
+      size: 2524
+    outs:
+    - path: results/imdb/gpt3/16.json
+      md5: 59f103718372714f2e402c7e99a25ea1
+      size: 234
+  data@16:
+    cmd: "python src/create_data.py --dataset imdb --n-shot 16 --test-size 100 --n-folds\
+      \ 5 --split train\npython src/create_data.py --dataset imdb --n-shot 16 --test-size\
+      \ 100 --n-folds 5 --split test\n"
+    deps:
+    - path: src/create_data.py
+      md5: c29253ae36fc0f595a307428804f0b84
+      size: 772
+    outs:
+    - path: data/imdb/16
+      md5: 68fd2171a4dc5ca43f046dbfc3693080.dir
+      size: 964075
+      nfiles: 10
+  data@5:
+    cmd: "python src/create_data.py --dataset imdb --n-shot 5 --test-size 100 --n-folds\
+      \ 5 --split train\npython src/create_data.py --dataset imdb --n-shot 5 --test-size\
+      \ 100 --n-folds 5 --split test\n"
+    deps:
+    - path: src/create_data.py
+      md5: c29253ae36fc0f595a307428804f0b84
+      size: 772
+    outs:
+    - path: data/imdb/5
+      md5: 8313e1717897edace4bfc4a138eba5bb.dir
+      size: 709363
+      nfiles: 10
+  data@8:
+    cmd: "python src/create_data.py --dataset imdb --n-shot 8 --test-size 100 --n-folds\
+      \ 5 --split train\npython src/create_data.py --dataset imdb --n-shot 8 --test-size\
+      \ 100 --n-folds 5 --split test\n"
+    deps:
+    - path: src/create_data.py
+      md5: c29253ae36fc0f595a307428804f0b84
+      size: 772
+    outs:
+    - path: data/imdb/8
+      md5: 4913c03cdadbfe4df7dd4ef5f3e5f7c3.dir
+      size: 766507
+      nfiles: 10
+  data@3:
+    cmd: "python src/create_data.py --dataset imdb --n-shot 3 --test-size 100 --n-folds\
+      \ 5 --split train\npython src/create_data.py --dataset imdb --n-shot 3 --test-size\
+      \ 100 --n-folds 5 --split test\n"
+    deps:
+    - path: src/create_data.py
+      md5: c29253ae36fc0f595a307428804f0b84
+      size: 772
+    outs:
+    - path: data/imdb/3
+      md5: 197d8c34ae9ec61ae62e7f45088230ad.dir
+      size: 666643
+      nfiles: 10
+  graph:
+    cmd: python src/create_graph.py --results-path results --figures-path figures
+      --dataset imdb
+    deps:
+    - path: results
+      md5: 3bd2bd6641ca51fc668da43d44aac70d.dir
+      size: 11245
+      nfiles: 52
+    - path: src/create_graph.py
+      md5: c9950224b801ee81262c1a5dc2cb7643
+      size: 1900
+    outs:
+    - path: figures/imdb.png
+      md5: c06e9358e7a6854d54e129726242e80d
+      size: 44395

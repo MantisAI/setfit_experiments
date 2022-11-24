@@ -1,0 +1,212 @@
+schema: '2.0'
+stages:
+  data@3:
+    cmd: "python src/create_data.py --dataset trec --n-shot 3 --test-size 100 --n-folds\
+      \ 5 --split train\npython src/create_data.py --dataset trec --n-shot 3 --test-size\
+      \ 100 --n-folds 5 --split test\n"
+    deps:
+    - path: src/create_data.py
+      md5: c29253ae36fc0f595a307428804f0b84
+      size: 772
+    outs:
+    - path: data/trec/3
+      md5: f7427fbaa8a2ca615765cdbb57ed7402.dir
+      size: 51764
+      nfiles: 10
+  tfidf_svm@5:
+    cmd: python src/train_tfidf_svm.py --data-path trec --n-shot "5" --test-size 100
+      --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 75db88ee99892d2aaf096f43a23178c8
+      size: 1525
+    outs:
+    - path: results/trec/tfidf_svm/5.json
+      md5: 56bc72157420af5e95704f2aa1341d6b
+      size: 220
+  tfidf_svm@8:
+    cmd: python src/train_tfidf_svm.py --data-path trec --n-shot "8" --test-size 100
+      --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 75db88ee99892d2aaf096f43a23178c8
+      size: 1525
+    outs:
+    - path: results/trec/tfidf_svm/8.json
+      md5: 4d2e0bd600b5e3761e0112e89d8919fc
+      size: 219
+  tfidf_svm@3:
+    cmd: python src/train_tfidf_svm.py --data-path trec --n-shot "3" --test-size 100
+      --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 75db88ee99892d2aaf096f43a23178c8
+      size: 1525
+    outs:
+    - path: results/trec/tfidf_svm/3.json
+      md5: 5a49a590a48364a76a87efc1a6a00fc3
+      size: 220
+  tfidf_svm@16:
+    cmd: python src/train_tfidf_svm.py --data-path trec --n-shot "16" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 75db88ee99892d2aaf096f43a23178c8
+      size: 1525
+    outs:
+    - path: results/trec/tfidf_svm/16.json
+      md5: 6761a736514d35f5404bbbd76aa42a03
+      size: 220
+  tfidf_svm@all:
+    cmd: python src/train_tfidf_svm.py --data-path trec --n-shot "all" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 75db88ee99892d2aaf096f43a23178c8
+      size: 1525
+    outs:
+    - path: results/trec/tfidf_svm/all.json
+      md5: b5e1da9995c716d8f313c36cea144877
+      size: 225
+  setfit@3:
+    cmd: python src/train_setfit.py --data-path trec --n-shot "3" --test-size 100
+      --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 43818491057c1c01dacb0d32932d6506
+      size: 1596
+    outs:
+    - path: results/trec/setfit/3.json
+      md5: 10ed9749d94d755e700137a8271efddf
+      size: 220
+  setfit@5:
+    cmd: python src/train_setfit.py --data-path trec --n-shot "5" --test-size 100
+      --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 43818491057c1c01dacb0d32932d6506
+      size: 1596
+    outs:
+    - path: results/trec/setfit/5.json
+      md5: 63f5a4e7cfe913c324cbdd73ea3b650f
+      size: 220
+  setfit@8:
+    cmd: python src/train_setfit.py --data-path trec --n-shot "8" --test-size 100
+      --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 43818491057c1c01dacb0d32932d6506
+      size: 1596
+    outs:
+    - path: results/trec/setfit/8.json
+      md5: 22482b12fc71581f4ffd37e0b5e1e7c4
+      size: 219
+  setfit@16:
+    cmd: python src/train_setfit.py --data-path trec --n-shot "16" --test-size 100
+      --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 43818491057c1c01dacb0d32932d6506
+      size: 1596
+    outs:
+    - path: results/trec/setfit/16.json
+      md5: 02f22dc0e259d88794cbc5b13ae89a17
+      size: 219
+  gpt3@3:
+    cmd: python src/evaluate_gpt3.py --data-path trec --n-shot "3" --test-size 10
+      --n-folds 5
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 08143f92adaaf77fc36e21d637abd3d3
+      size: 2524
+    outs:
+    - path: results/trec/gpt3/3.json
+      md5: d6476c13d92e64bc75262775d5ec6714
+      size: 215
+  gpt3@5:
+    cmd: python src/evaluate_gpt3.py --data-path trec --n-shot "5" --test-size 10
+      --n-folds 5
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 08143f92adaaf77fc36e21d637abd3d3
+      size: 2524
+    outs:
+    - path: results/trec/gpt3/5.json
+      md5: 0f8e09e410e6be7a27f853de387eff83
+      size: 215
+  gpt3@8:
+    cmd: python src/evaluate_gpt3.py --data-path trec --n-shot "8" --test-size 10
+      --n-folds 5
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 08143f92adaaf77fc36e21d637abd3d3
+      size: 2524
+    outs:
+    - path: results/trec/gpt3/8.json
+      md5: 6cc03b46967bb1bce8721e54596f9f52
+      size: 215
+  gpt3@16:
+    cmd: python src/evaluate_gpt3.py --data-path trec --n-shot "16" --test-size 10
+      --n-folds 5
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 08143f92adaaf77fc36e21d637abd3d3
+      size: 2524
+    outs:
+    - path: results/trec/gpt3/16.json
+      md5: 92db9e1c0a0af03aecbc0c405ef860eb
+      size: 215
+  graph:
+    cmd: python src/create_graph.py --results-path results --figures-path figures
+      --dataset trec
+    deps:
+    - path: results
+      md5: 3bd2bd6641ca51fc668da43d44aac70d.dir
+      size: 11245
+      nfiles: 52
+    - path: src/create_graph.py
+      md5: c9950224b801ee81262c1a5dc2cb7643
+      size: 1900
+    outs:
+    - path: figures/trec.png
+      md5: eadb5fa918a76aa8054b60e7420bd48a
+      size: 36104
+  data@8:
+    cmd: "python src/create_data.py --dataset trec --n-shot 8 --test-size 100 --n-folds\
+      \ 5 --split train\npython src/create_data.py --dataset trec --n-shot 8 --test-size\
+      \ 100 --n-folds 5 --split test\n"
+    deps:
+    - path: src/create_data.py
+      md5: c29253ae36fc0f595a307428804f0b84
+      size: 772
+    outs:
+    - path: data/trec/8
+      md5: cc17068a59a1d01e0e17d3ae8e6da6c3.dir
+      size: 65163
+      nfiles: 10
+  data@5:
+    cmd: "python src/create_data.py --dataset trec --n-shot 5 --test-size 100 --n-folds\
+      \ 5 --split train\npython src/create_data.py --dataset trec --n-shot 5 --test-size\
+      \ 100 --n-folds 5 --split test\n"
+    deps:
+    - path: src/create_data.py
+      md5: c29253ae36fc0f595a307428804f0b84
+      size: 772
+    outs:
+    - path: data/trec/5
+      md5: e9a94c175b96928d888a923ccbc6a1c3.dir
+      size: 57059
+      nfiles: 10
+  data@16:
+    cmd: "python src/create_data.py --dataset trec --n-shot 16 --test-size 100 --n-folds\
+      \ 5 --split train\npython src/create_data.py --dataset trec --n-shot 16 --test-size\
+      \ 100 --n-folds 5 --split test\n"
+    deps:
+    - path: src/create_data.py
+      md5: c29253ae36fc0f595a307428804f0b84
+      size: 772
+    outs:
+    - path: data/trec/16
+      md5: 723f8b6c99c15bd1fdfab5f289b545d8.dir
+      size: 85867
+      nfiles: 10

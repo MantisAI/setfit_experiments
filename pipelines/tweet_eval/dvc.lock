@@ -1,0 +1,168 @@
+schema: '2.0'
+stages:
+  data@5:
+    cmd: "python src/create_data.py --dataset tweet_eval --n-shot 5 --test-size 100\
+      \ --n-folds 5 --split train\npython src/create_data.py --dataset tweet_eval\
+      \ --n-shot 5 --test-size 100 --n-folds 5 --split test\n"
+    deps:
+    - path: src/create_data.py
+      md5: c29253ae36fc0f595a307428804f0b84
+      size: 772
+    outs:
+    - path: data/tweet_eval/5
+      md5: 199d724729430a60fb1843c8374d1469.dir
+      size: 68333
+      nfiles: 10
+  tfidf_svm@3:
+    cmd: python src/train_tfidf_svm.py --data-path tweet_eval --n-shot "3" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 75db88ee99892d2aaf096f43a23178c8
+      size: 1525
+    outs:
+    - path: results/tweet_eval/tfidf_svm/3.json
+      md5: 362af56fc2092046f2a33320e7b9923a
+      size: 220
+  tfidf_svm@5:
+    cmd: python src/train_tfidf_svm.py --data-path tweet_eval --n-shot "5" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 75db88ee99892d2aaf096f43a23178c8
+      size: 1525
+    outs:
+    - path: results/tweet_eval/tfidf_svm/5.json
+      md5: 32110943e715e683bd42e13cef33000b
+      size: 220
+  tfidf_svm@8:
+    cmd: python src/train_tfidf_svm.py --data-path tweet_eval --n-shot "8" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 75db88ee99892d2aaf096f43a23178c8
+      size: 1525
+    outs:
+    - path: results/tweet_eval/tfidf_svm/8.json
+      md5: e5e8be9c251590ee54ce1012ae9367c6
+      size: 220
+  tfidf_svm@16:
+    cmd: python src/train_tfidf_svm.py --data-path tweet_eval --n-shot "16" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 75db88ee99892d2aaf096f43a23178c8
+      size: 1525
+    outs:
+    - path: results/tweet_eval/tfidf_svm/16.json
+      md5: 03bcfe0da0256e7603fcbbd6af314610
+      size: 219
+  tfidf_svm@all:
+    cmd: python src/train_tfidf_svm.py --data-path tweet_eval --n-shot "all" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 75db88ee99892d2aaf096f43a23178c8
+      size: 1525
+    outs:
+    - path: results/tweet_eval/tfidf_svm/all.json
+      md5: 597efbc4149d6bdcea31d54190488d72
+      size: 290
+  setfit@3:
+    cmd: python src/train_setfit.py --data-path tweet_eval --n-shot "3" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 43818491057c1c01dacb0d32932d6506
+      size: 1596
+    outs:
+    - path: results/tweet_eval/setfit/3.json
+      md5: 1eba26f6c3728fc296bf0ce42baa632d
+      size: 220
+  setfit@5:
+    cmd: python src/train_setfit.py --data-path tweet_eval --n-shot "5" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 43818491057c1c01dacb0d32932d6506
+      size: 1596
+    outs:
+    - path: results/tweet_eval/setfit/5.json
+      md5: 79f5242cecea3c40e75538b388088a2a
+      size: 220
+  setfit@8:
+    cmd: python src/train_setfit.py --data-path tweet_eval --n-shot "8" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 43818491057c1c01dacb0d32932d6506
+      size: 1596
+    outs:
+    - path: results/tweet_eval/setfit/8.json
+      md5: fc9403f04164f8a932356fa9292d92ac
+      size: 220
+  setfit@16:
+    cmd: python src/train_setfit.py --data-path tweet_eval --n-shot "16" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 43818491057c1c01dacb0d32932d6506
+      size: 1596
+    outs:
+    - path: results/tweet_eval/setfit/16.json
+      md5: fbf5dece75261d785a3ec7d9df8963f1
+      size: 219
+  data@8:
+    cmd: "python src/create_data.py --dataset tweet_eval --n-shot 8 --test-size 100\
+      \ --n-folds 5 --split train\npython src/create_data.py --dataset tweet_eval\
+      \ --n-shot 8 --test-size 100 --n-folds 5 --split test\n"
+    deps:
+    - path: src/create_data.py
+      md5: c29253ae36fc0f595a307428804f0b84
+      size: 772
+    outs:
+    - path: data/tweet_eval/8
+      md5: 8811ddaa3482c29ee34930b375643867.dir
+      size: 76655
+      nfiles: 10
+  graph:
+    cmd: python src/create_graph.py --results-path results --figures-path figures
+      --dataset tweet_eval
+    deps:
+    - path: results
+      md5: 3bd2bd6641ca51fc668da43d44aac70d.dir
+      size: 11245
+      nfiles: 52
+    - path: src/create_graph.py
+      md5: c9950224b801ee81262c1a5dc2cb7643
+      size: 1900
+    outs:
+    - path: figures/tweet_eval.png
+      md5: d7f56fa3f01860642b53b4907bc7e9d2
+      size: 30539
+  data@3:
+    cmd: "python src/create_data.py --dataset tweet_eval --n-shot 3 --test-size 100\
+      \ --n-folds 5 --split train\npython src/create_data.py --dataset tweet_eval\
+      \ --n-shot 3 --test-size 100 --n-folds 5 --split test\n"
+    deps:
+    - path: src/create_data.py
+      md5: c29253ae36fc0f595a307428804f0b84
+      size: 772
+    outs:
+    - path: data/tweet_eval/3
+      md5: ac6b198ee9132c29c2d3619eb92ce8e1.dir
+      size: 64171
+      nfiles: 10
+  data@16:
+    cmd: "python src/create_data.py --dataset tweet_eval --n-shot 16 --test-size 100\
+      \ --n-folds 5 --split train\npython src/create_data.py --dataset tweet_eval\
+      \ --n-shot 16 --test-size 100 --n-folds 5 --split test\n"
+    deps:
+    - path: src/create_data.py
+      md5: c29253ae36fc0f595a307428804f0b84
+      size: 772
+    outs:
+    - path: data/tweet_eval/16
+      md5: b2c329b1f5ad4e2afa1f69455bb15f0e.dir
+      size: 96469
+      nfiles: 10
