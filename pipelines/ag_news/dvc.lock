@@ -161,16 +161,16 @@ stages:
       --dataset ag_news
     deps:
     - path: results
-      md5: 3bd2bd6641ca51fc668da43d44aac70d.dir
-      size: 11245
-      nfiles: 52
+      md5: 9b2636a54d6acb4fc11931db8e8dbcaf.dir
+      size: 11294
+      nfiles: 53
     - path: src/create_graph.py
       md5: c9950224b801ee81262c1a5dc2cb7643
       size: 1900
     outs:
     - path: figures/ag_news.png
-      md5: 1e5810f3483f17d74b8086e5d7e8c20a
-      size: 55713
+      md5: 65d6097368c67572f264fe3305eb636a
+      size: 59796
   data@8:
     cmd: "python src/create_data.py --dataset ag_news --n-shot 8 --test-size 100 --n-folds\
       \ 5 --split train\npython src/create_data.py --dataset ag_news --n-shot 8 --test-size\
