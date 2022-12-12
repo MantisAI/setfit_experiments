@@ -9,8 +9,8 @@ stages:
       size: 1525
     outs:
     - path: results/imdb/tfidf_svm/all.json
-      md5: 847ea2db9c8649d8b41211b772f37a0a
-      size: 233
+      md5: 9a215fa14e04ee92f53d25b8060b2784
+      size: 234
   tfidf_svm@3:
     cmd: python src/train_tfidf_svm.py --data-path imdb --n-shot "3" --test-size 100
       --n-folds 5
@@ -20,8 +20,8 @@ stages:
       size: 1525
     outs:
     - path: results/imdb/tfidf_svm/3.json
-      md5: 456d7303312c6fc877d83c764754aa18
-      size: 220
+      md5: e2faa8375b7d73120c9dae36beecf509
+      size: 221
   tfidf_svm@5:
     cmd: python src/train_tfidf_svm.py --data-path imdb --n-shot "5" --test-size 100
       --n-folds 5
@@ -31,8 +31,8 @@ stages:
       size: 1525
     outs:
     - path: results/imdb/tfidf_svm/5.json
-      md5: 177ec843587651dc5bde9c067c24cdd3
-      size: 220
+      md5: d3e82e8e8ab2107b5d50c15cf7f45498
+      size: 221
   tfidf_svm@8:
     cmd: python src/train_tfidf_svm.py --data-path imdb --n-shot "8" --test-size 100
       --n-folds 5
@@ -42,8 +42,8 @@ stages:
       size: 1525
     outs:
     - path: results/imdb/tfidf_svm/8.json
-      md5: fe6c2fe9e77bd8cfb4e6b28670aaf0e0
-      size: 219
+      md5: 87bb11aab86de1dafa06060bf564225e
+      size: 220
   tfidf_svm@16:
     cmd: python src/train_tfidf_svm.py --data-path imdb --n-shot "16" --test-size
       100 --n-folds 5
@@ -53,8 +53,8 @@ stages:
       size: 1525
     outs:
     - path: results/imdb/tfidf_svm/16.json
-      md5: 8e31687f78729d7db2b3fc46d22e662b
-      size: 220
+      md5: 384840c8a60a913d4df36d243a53b7a2
+      size: 221
   setfit@3:
     cmd: python src/train_setfit.py --data-path imdb --n-shot "3" --test-size 100
       --n-folds 5
@@ -64,8 +64,8 @@ stages:
       size: 1596
     outs:
     - path: results/imdb/setfit/3.json
-      md5: 28f170d41d97303a7e697f8093007e95
-      size: 218
+      md5: ba6abcb6ec58b19829c03f559cb887bd
+      size: 219
   setfit@5:
     cmd: python src/train_setfit.py --data-path imdb --n-shot "5" --test-size 100
       --n-folds 5
@@ -75,8 +75,8 @@ stages:
       size: 1596
     outs:
     - path: results/imdb/setfit/5.json
-      md5: 7407ce76cf6ece9d1afa47f0676e55d0
-      size: 219
+      md5: 8de71aa549552215516246e9497889fa
+      size: 220
   setfit@8:
     cmd: python src/train_setfit.py --data-path imdb --n-shot "8" --test-size 100
       --n-folds 5
@@ -86,8 +86,8 @@ stages:
       size: 1596
     outs:
     - path: results/imdb/setfit/8.json
-      md5: 0360d0d948dbde51b08f7652f35a79a4
-      size: 220
+      md5: 1a6a918e738eb5507bfadc99903a1ffe
+      size: 221
   setfit@16:
     cmd: python src/train_setfit.py --data-path imdb --n-shot "16" --test-size 100
       --n-folds 5
@@ -97,8 +97,8 @@ stages:
       size: 1596
     outs:
     - path: results/imdb/setfit/16.json
-      md5: d40b51f1bfbe59b7c6e6597c9f8988a0
-      size: 220
+      md5: 51c489f8f50ea248c55538f2db0901ed
+      size: 221
   gpt3@3:
     cmd: python src/evaluate_gpt3.py --data-path imdb --n-shot "3" --test-size 10
       --n-folds 5
@@ -200,8 +200,8 @@ stages:
       --dataset imdb
     deps:
     - path: results
-      md5: af180cc9ec1aba63d1889ac80bb9766d.dir
-      size: 10920
+      md5: 827553e67db716e3bbb48d508c72ec8b.dir
+      size: 10960
       nfiles: 53
     - path: src/create_graph.py
       md5: e88d7e90e912735571f470339478c2b4

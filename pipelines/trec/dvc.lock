@@ -22,8 +22,8 @@ stages:
       size: 1525
     outs:
     - path: results/trec/tfidf_svm/5.json
-      md5: 56bc72157420af5e95704f2aa1341d6b
-      size: 220
+      md5: 63e3a4e08da2ebe3ac5d426e2eb73903
+      size: 221
   tfidf_svm@8:
     cmd: python src/train_tfidf_svm.py --data-path trec --n-shot "8" --test-size 100
       --n-folds 5
@@ -33,8 +33,8 @@ stages:
       size: 1525
     outs:
     - path: results/trec/tfidf_svm/8.json
-      md5: 4d2e0bd600b5e3761e0112e89d8919fc
-      size: 219
+      md5: 2c1afab229630dd975622363870bfde4
+      size: 220
   tfidf_svm@3:
     cmd: python src/train_tfidf_svm.py --data-path trec --n-shot "3" --test-size 100
       --n-folds 5
@@ -44,8 +44,8 @@ stages:
       size: 1525
     outs:
     - path: results/trec/tfidf_svm/3.json
-      md5: 5a49a590a48364a76a87efc1a6a00fc3
-      size: 220
+      md5: 4940eacd8d607eed16b1dc8c3a13382b
+      size: 221
   tfidf_svm@16:
     cmd: python src/train_tfidf_svm.py --data-path trec --n-shot "16" --test-size
       100 --n-folds 5
@@ -55,8 +55,8 @@ stages:
       size: 1525
     outs:
     - path: results/trec/tfidf_svm/16.json
-      md5: 6761a736514d35f5404bbbd76aa42a03
-      size: 220
+      md5: 2c43edb05ae0657b88d2fa6a002737fb
+      size: 221
   tfidf_svm@all:
     cmd: python src/train_tfidf_svm.py --data-path trec --n-shot "all" --test-size
       100 --n-folds 5
@@ -66,8 +66,8 @@ stages:
       size: 1525
     outs:
     - path: results/trec/tfidf_svm/all.json
-      md5: b5e1da9995c716d8f313c36cea144877
-      size: 225
+      md5: d8b455d4af9dae78cd6b8909e150e989
+      size: 226
   setfit@3:
     cmd: python src/train_setfit.py --data-path trec --n-shot "3" --test-size 100
       --n-folds 5
@@ -77,8 +77,8 @@ stages:
       size: 1596
     outs:
     - path: results/trec/setfit/3.json
-      md5: 10ed9749d94d755e700137a8271efddf
-      size: 220
+      md5: b2924e9664da144a379b389478cbf9c5
+      size: 221
   setfit@5:
     cmd: python src/train_setfit.py --data-path trec --n-shot "5" --test-size 100
       --n-folds 5
@@ -88,8 +88,8 @@ stages:
       size: 1596
     outs:
     - path: results/trec/setfit/5.json
-      md5: 63f5a4e7cfe913c324cbdd73ea3b650f
-      size: 220
+      md5: 6270a6a368bda78832ea8a4c1ccf6420
+      size: 221
   setfit@8:
     cmd: python src/train_setfit.py --data-path trec --n-shot "8" --test-size 100
       --n-folds 5
@@ -99,8 +99,8 @@ stages:
       size: 1596
     outs:
     - path: results/trec/setfit/8.json
-      md5: 22482b12fc71581f4ffd37e0b5e1e7c4
-      size: 219
+      md5: 49380c7821311baa320ae3c40a597ed9
+      size: 220
   setfit@16:
     cmd: python src/train_setfit.py --data-path trec --n-shot "16" --test-size 100
       --n-folds 5
@@ -110,8 +110,8 @@ stages:
       size: 1596
     outs:
     - path: results/trec/setfit/16.json
-      md5: 02f22dc0e259d88794cbc5b13ae89a17
-      size: 219
+      md5: 3fb77f4975398dcab18e97faa392912f
+      size: 220
   gpt3@3:
     cmd: python src/evaluate_gpt3.py --data-path trec --n-shot "3" --test-size 10
       --n-folds 5
@@ -161,8 +161,8 @@ stages:
       --dataset trec
     deps:
     - path: results
-      md5: af180cc9ec1aba63d1889ac80bb9766d.dir
-      size: 10920
+      md5: 827553e67db716e3bbb48d508c72ec8b.dir
+      size: 10960
       nfiles: 53
     - path: src/create_graph.py
       md5: e88d7e90e912735571f470339478c2b4

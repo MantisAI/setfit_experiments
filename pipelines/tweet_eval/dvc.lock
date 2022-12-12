@@ -22,8 +22,8 @@ stages:
       size: 1525
     outs:
     - path: results/tweet_eval/tfidf_svm/3.json
-      md5: 362af56fc2092046f2a33320e7b9923a
-      size: 220
+      md5: 04bea5665439b2cc8553a27d276e3958
+      size: 221
   tfidf_svm@5:
     cmd: python src/train_tfidf_svm.py --data-path tweet_eval --n-shot "5" --test-size
       100 --n-folds 5
@@ -33,8 +33,8 @@ stages:
       size: 1525
     outs:
     - path: results/tweet_eval/tfidf_svm/5.json
-      md5: 32110943e715e683bd42e13cef33000b
-      size: 220
+      md5: 292f2b19ab02164382c4e893eb4d6f4a
+      size: 221
   tfidf_svm@8:
     cmd: python src/train_tfidf_svm.py --data-path tweet_eval --n-shot "8" --test-size
       100 --n-folds 5
@@ -44,8 +44,8 @@ stages:
       size: 1525
     outs:
     - path: results/tweet_eval/tfidf_svm/8.json
-      md5: e5e8be9c251590ee54ce1012ae9367c6
-      size: 220
+      md5: b3a138f56261ddaa8b23b457db563415
+      size: 221
   tfidf_svm@16:
     cmd: python src/train_tfidf_svm.py --data-path tweet_eval --n-shot "16" --test-size
       100 --n-folds 5
@@ -55,8 +55,8 @@ stages:
       size: 1525
     outs:
     - path: results/tweet_eval/tfidf_svm/16.json
-      md5: 03bcfe0da0256e7603fcbbd6af314610
-      size: 219
+      md5: d482dc30f104bc40ce818c50612b7403
+      size: 220
   tfidf_svm@all:
     cmd: python src/train_tfidf_svm.py --data-path tweet_eval --n-shot "all" --test-size
       100 --n-folds 5
@@ -66,8 +66,8 @@ stages:
       size: 1525
     outs:
     - path: results/tweet_eval/tfidf_svm/all.json
-      md5: 597efbc4149d6bdcea31d54190488d72
-      size: 290
+      md5: 3afbc1111a3ce3ff38da700868dbaca5
+      size: 291
   setfit@3:
     cmd: python src/train_setfit.py --data-path tweet_eval --n-shot "3" --test-size
       100 --n-folds 5
@@ -77,8 +77,8 @@ stages:
       size: 1596
     outs:
     - path: results/tweet_eval/setfit/3.json
-      md5: 1eba26f6c3728fc296bf0ce42baa632d
-      size: 220
+      md5: 0b18a4737f26baeb1a45bdd25e2c41d9
+      size: 221
   setfit@5:
     cmd: python src/train_setfit.py --data-path tweet_eval --n-shot "5" --test-size
       100 --n-folds 5
@@ -88,8 +88,8 @@ stages:
       size: 1596
     outs:
     - path: results/tweet_eval/setfit/5.json
-      md5: 79f5242cecea3c40e75538b388088a2a
-      size: 220
+      md5: 6c3acc973ee8c03cedb7ea20a91e254e
+      size: 221
   setfit@8:
     cmd: python src/train_setfit.py --data-path tweet_eval --n-shot "8" --test-size
       100 --n-folds 5
@@ -99,8 +99,8 @@ stages:
       size: 1596
     outs:
     - path: results/tweet_eval/setfit/8.json
-      md5: fc9403f04164f8a932356fa9292d92ac
-      size: 220
+      md5: 0de46ee4f1e95cf6e0acbf2a640ebcd7
+      size: 221
   setfit@16:
     cmd: python src/train_setfit.py --data-path tweet_eval --n-shot "16" --test-size
       100 --n-folds 5
@@ -110,8 +110,8 @@ stages:
       size: 1596
     outs:
     - path: results/tweet_eval/setfit/16.json
-      md5: fbf5dece75261d785a3ec7d9df8963f1
-      size: 219
+      md5: d2b6c347f8cb99d689322310980a16e9
+      size: 220
   data@8:
     cmd: "python src/create_data.py --dataset tweet_eval --n-shot 8 --test-size 100\
       \ --n-folds 5 --split train\npython src/create_data.py --dataset tweet_eval\
@@ -130,8 +130,8 @@ stages:
       --dataset tweet_eval
     deps:
     - path: results
-      md5: af180cc9ec1aba63d1889ac80bb9766d.dir
-      size: 10920
+      md5: 827553e67db716e3bbb48d508c72ec8b.dir
+      size: 10960
       nfiles: 53
     - path: src/create_graph.py
       md5: e88d7e90e912735571f470339478c2b4
