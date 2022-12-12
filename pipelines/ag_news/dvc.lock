@@ -114,63 +114,63 @@ stages:
       size: 219
   gpt3@3:
     cmd: python src/evaluate_gpt3.py --data-path ag_news --n-shot "3" --test-size
-      10 --n-folds 5
+      20 --n-folds 3
     deps:
     - path: src/evaluate_gpt3.py
-      md5: 08143f92adaaf77fc36e21d637abd3d3
-      size: 2524
+      md5: 259d331f88f1e7ba20d25202debc85e3
+      size: 2448
     outs:
     - path: results/ag_news/gpt3/3.json
-      md5: 7e6d84b3d7040751d3b9be78f4e56fc8
-      size: 215
+      md5: df9cdd6c19ca48b85a5dbbbfaaeaf5ff
+      size: 130
   gpt3@5:
     cmd: python src/evaluate_gpt3.py --data-path ag_news --n-shot "5" --test-size
-      10 --n-folds 5
+      20 --n-folds 3
     deps:
     - path: src/evaluate_gpt3.py
-      md5: 08143f92adaaf77fc36e21d637abd3d3
-      size: 2524
+      md5: 259d331f88f1e7ba20d25202debc85e3
+      size: 2448
     outs:
     - path: results/ag_news/gpt3/5.json
-      md5: 8843679c816c9431f8adc6993022ff82
-      size: 215
+      md5: 89ea6e353dd7d3318f6e7b3844c71471
+      size: 131
   gpt3@8:
     cmd: python src/evaluate_gpt3.py --data-path ag_news --n-shot "8" --test-size
-      10 --n-folds 5
+      20 --n-folds 3
     deps:
     - path: src/evaluate_gpt3.py
-      md5: 08143f92adaaf77fc36e21d637abd3d3
-      size: 2524
+      md5: 259d331f88f1e7ba20d25202debc85e3
+      size: 2448
     outs:
     - path: results/ag_news/gpt3/8.json
-      md5: cfe9dbab43c0758e3ad3d765dac2946a
-      size: 215
+      md5: 91eceb06bd9cd5ec778383cb9d7e6a62
+      size: 130
   gpt3@16:
     cmd: python src/evaluate_gpt3.py --data-path ag_news --n-shot "16" --test-size
-      10 --n-folds 5
+      20 --n-folds 3
     deps:
     - path: src/evaluate_gpt3.py
-      md5: 08143f92adaaf77fc36e21d637abd3d3
-      size: 2524
+      md5: 259d331f88f1e7ba20d25202debc85e3
+      size: 2448
     outs:
     - path: results/ag_news/gpt3/16.json
-      md5: 03430ea8f890c1c5d5ca3b35f76d3693
-      size: 215
+      md5: 7b311fa4dfbcce8243e24fee731cf91e
+      size: 86
   graph:
     cmd: python src/create_graph.py --results-path results --figures-path figures
       --dataset ag_news
     deps:
     - path: results
-      md5: 6f797239fac2516dc4770f42cb154d93.dir
-      size: 11295
+      md5: af180cc9ec1aba63d1889ac80bb9766d.dir
+      size: 10920
       nfiles: 53
     - path: src/create_graph.py
-      md5: 3b4786fec7485932417795c5834cd7f3
-      size: 1963
+      md5: e88d7e90e912735571f470339478c2b4
+      size: 2022
     outs:
     - path: figures/ag_news.png
-      md5: 589117ff9d0b268a843343753bc60c07
-      size: 58045
+      md5: be4104bc0886ff0f7207b249da58df47
+      size: 55750
   data@8:
     cmd: "python src/create_data.py --dataset ag_news --n-shot 8 --test-size 100 --n-folds\
       \ 5 --split train\npython src/create_data.py --dataset ag_news --n-shot 8 --test-size\

@@ -17,12 +17,10 @@ def create_prompt(dataset, id2label):
     labels = [id2label[label] for label in set(dataset["label"])]
     prompt = "Classify the sentence as one of {}\n".format(",".join(labels))
 
-    max_tokens_per_example = (2500 // len(dataset)) - (len(dataset) * 2)
     for example in dataset:
         text, label = example["text"], example["label"]
         label = id2label[label]
 
-        text = " ".join(text.split()[:max_tokens_per_example])
         prompt += f"Text:{text}\n"
         prompt += f"Label:{label}\n\n"
 
@@ -58,6 +56,8 @@ def evaluate(
         test_dataset = sample_dataset["test"]
 
         prompt = create_prompt(sample_dataset["train"], id2label)
+        if len(prompt.split()) > 2500:
+            continue
 
         y_test = []
         y_pred = []

@@ -200,13 +200,13 @@ stages:
       --dataset imdb
     deps:
     - path: results
-      md5: 6f797239fac2516dc4770f42cb154d93.dir
-      size: 11295
+      md5: af180cc9ec1aba63d1889ac80bb9766d.dir
+      size: 10920
       nfiles: 53
     - path: src/create_graph.py
-      md5: 3b4786fec7485932417795c5834cd7f3
-      size: 1963
+      md5: e88d7e90e912735571f470339478c2b4
+      size: 2022
     outs:
     - path: figures/imdb.png
-      md5: 2af19760f7ee748e9308aeffa9e4c07a
-      size: 45462
+      md5: e01c97345b2f0cf54c51b069924f2440
+      size: 44096
