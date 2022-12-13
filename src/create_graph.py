@@ -41,9 +41,12 @@ def create_graph(results_path="results", dataset="imdb", figures_path="figures")
                             "accuracy": fold_result["metrics"]["accuracy"],
                         }
                     )
+    print(all_data)
 
     few_shot_data = pd.DataFrame(few_shot_data)
+
     line_plot = sns.lineplot(few_shot_data, x="n_shot", y="accuracy", hue="model")
+    line_plot.set(ylim=(0, 1))
 
     all_colors = ["r", "b"]
     for i, result in enumerate(all_data):
