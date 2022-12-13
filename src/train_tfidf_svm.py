@@ -37,7 +37,7 @@ def train_tfidf_svm(
         model = Pipeline(
             [
                 ("tfidf", TfidfVectorizer(min_df=3, max_features=10_000)),
-                ("svm", SGDClassifier()),
+                ("svm", SGDClassifier(loss="log")),
             ]
         )
         model.fit(X_train, y_train)

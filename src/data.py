@@ -1,3 +1,4 @@
+import random
 import json
 
 from datasets import load_dataset, Dataset, ClassLabel
@@ -32,17 +33,29 @@ def load_data(data_path):
     if data_path == "SetFit/enron_spam":
         label = ClassLabel(num_classes=2, names=["ham", "spam"])
         dataset = dataset.cast_column("label", label)
+    if data_path == "SetFit/toxic_conversations":
+        label = ClassLabel(num_classes=2, names=["non toxic", "toxic"])
+        dataset = dataset.cast_column("label", label)
     return dataset
 
 
 def sample_data(dataset, num_samples_per_class, test_size, seed=42):
-    num_classes = len(set(dataset["train"]["label"]))
-    train_size = num_classes * num_samples_per_class
+    random.seed(seed)
+    labels = list(set(dataset["train"]["label"]))
 
     dataset = dataset["train"].train_test_split(
-        train_size=train_size, stratify_by_column="label", seed=seed
+        test_size=test_size, stratify_by_column="label", seed=seed
     )
-    dataset["test"] = dataset["test"].select(range(test_size))
+
+    train_indices = []
+    for label in labels:
+        label_indices = [
+            i for i, example in enumerate(dataset["train"]) if example["label"] == label
+        ]
+        random.shuffle(label_indices)
+        label_indices = label_indices[:num_samples_per_class]
+        train_indices.extend(label_indices)
+    dataset["train"] = dataset["train"].select(train_indices)
 
     return dataset
 

@@ -47,7 +47,7 @@ stages:
     wdir: ../..
     deps:
       - src/create_graph.py
-      - results
+      - results/
     outs:
       - figures/toxic_conversations.png:
           cache: false

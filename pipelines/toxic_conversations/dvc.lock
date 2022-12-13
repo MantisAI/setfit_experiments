@@ -1,0 +1,216 @@
+schema: '2.0'
+stages:
+  setfit@5:
+    cmd: python src/train_setfit.py --data-path SetFit/toxic_conversations --n-shot
+      "5" --test-size 100 --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 02e6a4090b91f7c58cd45cd505016889
+      size: 1732
+    outs:
+    - path: results/toxic_conversations/setfit/5.json
+      md5: 371e77e17df2fc4a09042fccfb16d91e
+      size: 219
+  data@5:
+    cmd: "python src/create_data.py --dataset SetFit/toxic_conversations --n-shot\
+      \ 5 --test-size 100 --n-folds 5 --split train\npython src/create_data.py --dataset\
+      \ SetFit/toxic_conversations --n-shot 5 --test-size 100 --n-folds 5 --split\
+      \ test\n"
+    deps:
+    - path: src/create_data.py
+      md5: 0f0a1cc1e19d22e20e72d4250a665c40
+      size: 902
+    outs:
+    - path: data/toxic_conversations/5
+      md5: 5bf4ebbd23a49beeef81eea468ff44a6.dir
+      size: 184386
+      nfiles: 10
+  gpt3@16:
+    cmd: python src/evaluate_gpt3.py --data-path SetFit/toxic_conversations --n-shot
+      "16" --test-size 40 --n-folds 3
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 6d9133d9ad1e996ce5c67ba17c43a5ac
+      size: 2584
+    outs:
+    - path: results/toxic_conversations/gpt3/16.json
+      md5: 9b5b68ecb05b8a9570836df242cf9046
+      size: 162
+  tfidf_svm@3:
+    cmd: python src/train_tfidf_svm.py --data-path SetFit/toxic_conversations --n-shot
+      "3" --test-size 100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 354704177f4d03f88bee360ea6a4d06a
+      size: 1671
+    outs:
+    - path: results/toxic_conversations/tfidf_svm/3.json
+      md5: e3fb68978045b810d1b7f3be092f0157
+      size: 220
+  tfidf_svm@5:
+    cmd: python src/train_tfidf_svm.py --data-path SetFit/toxic_conversations --n-shot
+      "5" --test-size 100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 354704177f4d03f88bee360ea6a4d06a
+      size: 1671
+    outs:
+    - path: results/toxic_conversations/tfidf_svm/5.json
+      md5: fd662723b0cd7c00df9830967d8ea350
+      size: 218
+  tfidf_svm@8:
+    cmd: python src/train_tfidf_svm.py --data-path SetFit/toxic_conversations --n-shot
+      "8" --test-size 100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 354704177f4d03f88bee360ea6a4d06a
+      size: 1671
+    outs:
+    - path: results/toxic_conversations/tfidf_svm/8.json
+      md5: 15e6ad00a822f7abbdb92f871e15f5d3
+      size: 219
+  tfidf_svm@16:
+    cmd: python src/train_tfidf_svm.py --data-path SetFit/toxic_conversations --n-shot
+      "16" --test-size 100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 354704177f4d03f88bee360ea6a4d06a
+      size: 1671
+    outs:
+    - path: results/toxic_conversations/tfidf_svm/16.json
+      md5: b5fa4210921116ba307331e7abbd24c3
+      size: 220
+  tfidf_svm@all:
+    cmd: python src/train_tfidf_svm.py --data-path SetFit/toxic_conversations --n-shot
+      "all" --test-size 100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 354704177f4d03f88bee360ea6a4d06a
+      size: 1671
+    outs:
+    - path: results/toxic_conversations/tfidf_svm/all.json
+      md5: 6d4e6ef0b1a80aac8cf6de75eb8d81a8
+      size: 235
+  setfit@3:
+    cmd: python src/train_setfit.py --data-path SetFit/toxic_conversations --n-shot
+      "3" --test-size 100 --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 02e6a4090b91f7c58cd45cd505016889
+      size: 1732
+    outs:
+    - path: results/toxic_conversations/setfit/3.json
+      md5: 6f1f08565a997c8e874099d4e9a58789
+      size: 220
+  setfit@8:
+    cmd: python src/train_setfit.py --data-path SetFit/toxic_conversations --n-shot
+      "8" --test-size 100 --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 02e6a4090b91f7c58cd45cd505016889
+      size: 1732
+    outs:
+    - path: results/toxic_conversations/setfit/8.json
+      md5: 02d71f26da8a94020530ea54d6c2f37b
+      size: 219
+  setfit@16:
+    cmd: python src/train_setfit.py --data-path SetFit/toxic_conversations --n-shot
+      "16" --test-size 100 --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 02e6a4090b91f7c58cd45cd505016889
+      size: 1732
+    outs:
+    - path: results/toxic_conversations/setfit/16.json
+      md5: d965f6ef5f8a2ef891295b21d938bb23
+      size: 220
+  gpt3@3:
+    cmd: python src/evaluate_gpt3.py --data-path SetFit/toxic_conversations --n-shot
+      "3" --test-size 40 --n-folds 3
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 6d9133d9ad1e996ce5c67ba17c43a5ac
+      size: 2584
+    outs:
+    - path: results/toxic_conversations/gpt3/3.json
+      md5: 93ba620cb9018de8033b281e39ddb5f1
+      size: 131
+  gpt3@5:
+    cmd: python src/evaluate_gpt3.py --data-path SetFit/toxic_conversations --n-shot
+      "5" --test-size 40 --n-folds 3
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 6d9133d9ad1e996ce5c67ba17c43a5ac
+      size: 2584
+    outs:
+    - path: results/toxic_conversations/gpt3/5.json
+      md5: 1085da3afee02fb85c40c2c921ba0013
+      size: 133
+  gpt3@8:
+    cmd: python src/evaluate_gpt3.py --data-path SetFit/toxic_conversations --n-shot
+      "8" --test-size 40 --n-folds 3
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 6d9133d9ad1e996ce5c67ba17c43a5ac
+      size: 2584
+    outs:
+    - path: results/toxic_conversations/gpt3/8.json
+      md5: 453358d0b75a32c4241064f79dfb71f6
+      size: 162
+  graph:
+    cmd: python src/create_graph.py --results-path results --figures-path figures
+      --dataset toxic_conversations
+    deps:
+    - path: results/
+      md5: 9a8f0c2b37fd9d9ee7fb9d271cb63b34.dir
+      size: 10853
+      nfiles: 64
+    - path: src/create_graph.py
+      md5: e88d7e90e912735571f470339478c2b4
+      size: 2022
+    outs:
+    - path: figures/toxic_conversations.png
+      md5: 771d4fd235a8f9ffea7956f69e09c452
+      size: 35983
+  data@3:
+    cmd: "python src/create_data.py --dataset SetFit/toxic_conversations --n-shot\
+      \ 3 --test-size 100 --n-folds 5 --split train\npython src/create_data.py --dataset\
+      \ SetFit/toxic_conversations --n-shot 3 --test-size 100 --n-folds 5 --split\
+      \ test\n"
+    deps:
+    - path: src/create_data.py
+      md5: 0f0a1cc1e19d22e20e72d4250a665c40
+      size: 902
+    outs:
+    - path: data/toxic_conversations/3
+      md5: bf6acfe912fdf258bac4805638a11a9e.dir
+      size: 184290
+      nfiles: 10
+  data@16:
+    cmd: "python src/create_data.py --dataset SetFit/toxic_conversations --n-shot\
+      \ 16 --test-size 100 --n-folds 5 --split train\npython src/create_data.py --dataset\
+      \ SetFit/toxic_conversations --n-shot 16 --test-size 100 --n-folds 5 --split\
+      \ test\n"
+    deps:
+    - path: src/create_data.py
+      md5: 0f0a1cc1e19d22e20e72d4250a665c40
+      size: 902
+    outs:
+    - path: data/toxic_conversations/16
+      md5: e634e101a1896ca61c7965f384351596.dir
+      size: 229858
+      nfiles: 10
+  data@8:
+    cmd: "python src/create_data.py --dataset SetFit/toxic_conversations --n-shot\
+      \ 8 --test-size 100 --n-folds 5 --split train\npython src/create_data.py --dataset\
+      \ SetFit/toxic_conversations --n-shot 8 --test-size 100 --n-folds 5 --split\
+      \ test\n"
+    deps:
+    - path: src/create_data.py
+      md5: 0f0a1cc1e19d22e20e72d4250a665c40
+      size: 902
+    outs:
+    - path: data/toxic_conversations/8
+      md5: d0665936abbcc446d38b626083d2bdb8.dir
+      size: 202166
+      nfiles: 10

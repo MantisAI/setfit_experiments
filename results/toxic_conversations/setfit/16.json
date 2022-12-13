@@ -1,0 +1,1 @@
+[{"fold": 0, "metrics": {"accuracy": 0.72}}, {"fold": 1, "metrics": {"accuracy": 0.68}}, {"fold": 2, "metrics": {"accuracy": 0.64}}, {"fold": 3, "metrics": {"accuracy": 0.74}}, {"fold": 4, "metrics": {"accuracy": 0.69}}]
