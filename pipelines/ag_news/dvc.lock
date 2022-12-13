@@ -5,42 +5,42 @@ stages:
       100 --n-folds 5
     deps:
     - path: src/train_tfidf_svm.py
-      md5: 75db88ee99892d2aaf096f43a23178c8
-      size: 1525
+      md5: c1813b90be205cbd8bc99e4bb402b1e1
+      size: 1661
     outs:
     - path: results/ag_news/tfidf_svm/5.json
-      md5: 50fbbf9d62e5b784b1513460ee2a3d8c
+      md5: 34c8efd37d13e6760ff5c6566ee45cf4
       size: 220
   setfit@8:
     cmd: python src/train_setfit.py --data-path ag_news --n-shot "8" --test-size 100
       --n-folds 5
     deps:
     - path: src/train_setfit.py
-      md5: 43818491057c1c01dacb0d32932d6506
-      size: 1596
+      md5: 02e6a4090b91f7c58cd45cd505016889
+      size: 1732
     outs:
     - path: results/ag_news/setfit/8.json
-      md5: db57813338e187b78fc54341bfcbed61
-      size: 221
+      md5: d4fb2f62c7edbce1b88cf69d0a92c87e
+      size: 220
   tfidf_svm@16:
     cmd: python src/train_tfidf_svm.py --data-path ag_news --n-shot "16" --test-size
       100 --n-folds 5
     deps:
     - path: src/train_tfidf_svm.py
-      md5: 75db88ee99892d2aaf096f43a23178c8
-      size: 1525
+      md5: c1813b90be205cbd8bc99e4bb402b1e1
+      size: 1661
     outs:
     - path: results/ag_news/tfidf_svm/16.json
-      md5: 72a80879436514ee2eaa189b00cffdeb
-      size: 221
+      md5: 57a07ac419e0abee4bab1e20f6653724
+      size: 220
   data@3:
     cmd: "python src/create_data.py --dataset ag_news --n-shot 3 --test-size 100 --n-folds\
       \ 5 --split train\npython src/create_data.py --dataset ag_news --n-shot 3 --test-size\
       \ 100 --n-folds 5 --split test\n"
     deps:
     - path: src/create_data.py
-      md5: c29253ae36fc0f595a307428804f0b84
-      size: 772
+      md5: 0f0a1cc1e19d22e20e72d4250a665c40
+      size: 902
     outs:
     - path: data/ag_news/3
       md5: 57155ca7d72bd6785443a8cc29cb8186.dir
@@ -51,134 +51,134 @@ stages:
       100 --n-folds 5
     deps:
     - path: src/train_tfidf_svm.py
-      md5: 75db88ee99892d2aaf096f43a23178c8
-      size: 1525
+      md5: c1813b90be205cbd8bc99e4bb402b1e1
+      size: 1661
     outs:
     - path: results/ag_news/tfidf_svm/3.json
-      md5: c97c77a8c8ba2fc6438ef22210b4631e
-      size: 221
+      md5: f314ee2a59a1ce3ccec89c5bac462aaf
+      size: 218
   setfit@3:
     cmd: python src/train_setfit.py --data-path ag_news --n-shot "3" --test-size 100
       --n-folds 5
     deps:
     - path: src/train_setfit.py
-      md5: 43818491057c1c01dacb0d32932d6506
-      size: 1596
+      md5: 02e6a4090b91f7c58cd45cd505016889
+      size: 1732
     outs:
     - path: results/ag_news/setfit/3.json
-      md5: 91a6a19eb353e2edccaa7bc178bc79b6
-      size: 221
+      md5: d5106b584c0e68470891699f9e549527
+      size: 220
   setfit@16:
     cmd: python src/train_setfit.py --data-path ag_news --n-shot "16" --test-size
       100 --n-folds 5
     deps:
     - path: src/train_setfit.py
-      md5: 43818491057c1c01dacb0d32932d6506
-      size: 1596
+      md5: 02e6a4090b91f7c58cd45cd505016889
+      size: 1732
     outs:
     - path: results/ag_news/setfit/16.json
-      md5: 78b50fdaaf9684cefc5191928ea483b4
-      size: 221
+      md5: 7cbfaad9a4a10258d6f0654e5046bee4
+      size: 220
   tfidf_svm@8:
     cmd: python src/train_tfidf_svm.py --data-path ag_news --n-shot "8" --test-size
       100 --n-folds 5
     deps:
     - path: src/train_tfidf_svm.py
-      md5: 75db88ee99892d2aaf096f43a23178c8
-      size: 1525
+      md5: c1813b90be205cbd8bc99e4bb402b1e1
+      size: 1661
     outs:
     - path: results/ag_news/tfidf_svm/8.json
-      md5: 0b18bb484f1c2b20078bfc931188ab67
-      size: 221
+      md5: 0ae2191be821d6f59ec224002bf31667
+      size: 220
   tfidf_svm@all:
     cmd: python src/train_tfidf_svm.py --data-path ag_news --n-shot "all" --test-size
       100 --n-folds 5
     deps:
     - path: src/train_tfidf_svm.py
-      md5: 75db88ee99892d2aaf096f43a23178c8
-      size: 1525
+      md5: c1813b90be205cbd8bc99e4bb402b1e1
+      size: 1661
     outs:
     - path: results/ag_news/tfidf_svm/all.json
-      md5: e9b6fba8043dbae469896eb6ea763ff6
-      size: 267
+      md5: bd8176cbc363f78412432069db8ed0f3
+      size: 290
   setfit@5:
     cmd: python src/train_setfit.py --data-path ag_news --n-shot "5" --test-size 100
       --n-folds 5
     deps:
     - path: src/train_setfit.py
-      md5: 43818491057c1c01dacb0d32932d6506
-      size: 1596
+      md5: 02e6a4090b91f7c58cd45cd505016889
+      size: 1732
     outs:
     - path: results/ag_news/setfit/5.json
-      md5: 7261769561c81244f701d75cb9843a79
-      size: 220
+      md5: 2f85f371e7f035cf4de0e58c91d7be9f
+      size: 218
   gpt3@3:
     cmd: python src/evaluate_gpt3.py --data-path ag_news --n-shot "3" --test-size
-      20 --n-folds 3
+      40 --n-folds 3
     deps:
     - path: src/evaluate_gpt3.py
-      md5: 259d331f88f1e7ba20d25202debc85e3
-      size: 2448
+      md5: 6d9133d9ad1e996ce5c67ba17c43a5ac
+      size: 2584
     outs:
     - path: results/ag_news/gpt3/3.json
-      md5: 3dab05dda0ff0c876f3dd0452d8b7cdc
-      size: 131
+      md5: 1f86fb609a9c432c66c320423b8ef9eb
+      size: 145
   gpt3@5:
     cmd: python src/evaluate_gpt3.py --data-path ag_news --n-shot "5" --test-size
-      20 --n-folds 3
+      40 --n-folds 3
     deps:
     - path: src/evaluate_gpt3.py
-      md5: 259d331f88f1e7ba20d25202debc85e3
-      size: 2448
+      md5: 6d9133d9ad1e996ce5c67ba17c43a5ac
+      size: 2584
     outs:
     - path: results/ag_news/gpt3/5.json
-      md5: 414b81d3d6cd1573938ac7d9990c0687
-      size: 132
+      md5: eac359ac16527402eedb2e80611a9721
+      size: 145
   gpt3@8:
     cmd: python src/evaluate_gpt3.py --data-path ag_news --n-shot "8" --test-size
-      20 --n-folds 3
+      40 --n-folds 3
     deps:
     - path: src/evaluate_gpt3.py
-      md5: 259d331f88f1e7ba20d25202debc85e3
-      size: 2448
+      md5: 6d9133d9ad1e996ce5c67ba17c43a5ac
+      size: 2584
     outs:
     - path: results/ag_news/gpt3/8.json
-      md5: 0fbeb6268dbda3dda19056dbe9184563
-      size: 131
+      md5: 4170ca523c63a0225ded47331496f28f
+      size: 176
   gpt3@16:
     cmd: python src/evaluate_gpt3.py --data-path ag_news --n-shot "16" --test-size
-      20 --n-folds 3
+      40 --n-folds 3
     deps:
     - path: src/evaluate_gpt3.py
-      md5: 259d331f88f1e7ba20d25202debc85e3
-      size: 2448
+      md5: 6d9133d9ad1e996ce5c67ba17c43a5ac
+      size: 2584
     outs:
     - path: results/ag_news/gpt3/16.json
-      md5: 21c735651da55ebc100c82dc58a42061
-      size: 87
+      md5: 7b311fa4dfbcce8243e24fee731cf91e
+      size: 86
   graph:
     cmd: python src/create_graph.py --results-path results --figures-path figures
       --dataset ag_news
     deps:
     - path: results
-      md5: 827553e67db716e3bbb48d508c72ec8b.dir
-      size: 10960
-      nfiles: 53
+      md5: bc908afc8aef9fc4b8e9dd72657fcc05.dir
+      size: 8415
+      nfiles: 51
     - path: src/create_graph.py
       md5: e88d7e90e912735571f470339478c2b4
       size: 2022
     outs:
     - path: figures/ag_news.png
-      md5: be4104bc0886ff0f7207b249da58df47
-      size: 55750
+      md5: 113f0adf9a8e6c9b6227007b99e620f2
+      size: 53191
   data@8:
     cmd: "python src/create_data.py --dataset ag_news --n-shot 8 --test-size 100 --n-folds\
       \ 5 --split train\npython src/create_data.py --dataset ag_news --n-shot 8 --test-size\
       \ 100 --n-folds 5 --split test\n"
     deps:
     - path: src/create_data.py
-      md5: c29253ae36fc0f595a307428804f0b84
-      size: 772
+      md5: 0f0a1cc1e19d22e20e72d4250a665c40
+      size: 902
     outs:
     - path: data/ag_news/8
       md5: 2ec56596a3316b4f2ee21c2c59523ec7.dir
@@ -190,8 +190,8 @@ stages:
       \ 100 --n-folds 5 --split test\n"
     deps:
     - path: src/create_data.py
-      md5: c29253ae36fc0f595a307428804f0b84
-      size: 772
+      md5: 0f0a1cc1e19d22e20e72d4250a665c40
+      size: 902
     outs:
     - path: data/ag_news/5
       md5: 637cea1cf0a18a80b08f62d46de0246f.dir
@@ -203,8 +203,8 @@ stages:
       \ 16 --test-size 100 --n-folds 5 --split test\n"
     deps:
     - path: src/create_data.py
-      md5: c29253ae36fc0f595a307428804f0b84
-      size: 772
+      md5: 0f0a1cc1e19d22e20e72d4250a665c40
+      size: 902
     outs:
     - path: data/ag_news/16
       md5: ad7965acba8f2db4c0ca6e33f866f4c8.dir

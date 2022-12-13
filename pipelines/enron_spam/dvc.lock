@@ -1,0 +1,212 @@
+schema: '2.0'
+stages:
+  setfit@8:
+    cmd: python src/train_setfit.py --data-path SetFit/enron_spam --n-shot "8" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 02e6a4090b91f7c58cd45cd505016889
+      size: 1732
+    outs:
+    - path: results/enron_spam/setfit/8.json
+      md5: a27ca030b2d1ae01bd738cec58ec8651
+      size: 220
+  gpt3@3:
+    cmd: python src/evaluate_gpt3.py --data-path SetFit/enron_spam --n-shot "3" --test-size
+      20 --n-folds 3
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 6d9133d9ad1e996ce5c67ba17c43a5ac
+      size: 2584
+    outs:
+    - path: results/enron_spam/gpt3/3.json
+      md5: 456741dc4d4823c4a5ba4ef5e708f820
+      size: 129
+  tfidf_svm@16:
+    cmd: python src/train_tfidf_svm.py --data-path SetFit/enron_spam --n-shot "16"
+      --test-size 100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: c1813b90be205cbd8bc99e4bb402b1e1
+      size: 1661
+    outs:
+    - path: results/enron_spam/tfidf_svm/16.json
+      md5: 85bc711daf1b8866333547045e7675ec
+      size: 220
+  tfidf_svm@3:
+    cmd: python src/train_tfidf_svm.py --data-path SetFit/enron_spam --n-shot "3"
+      --test-size 100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: c1813b90be205cbd8bc99e4bb402b1e1
+      size: 1661
+    outs:
+    - path: results/enron_spam/tfidf_svm/3.json
+      md5: 81204e148b87d6aeeeee3a7ea3d26961
+      size: 219
+  setfit@3:
+    cmd: python src/train_setfit.py --data-path SetFit/enron_spam --n-shot "3" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 02e6a4090b91f7c58cd45cd505016889
+      size: 1732
+    outs:
+    - path: results/enron_spam/setfit/3.json
+      md5: b4a1912a81f43b3ae030a0ff15f8632f
+      size: 219
+  gpt3@5:
+    cmd: python src/evaluate_gpt3.py --data-path SetFit/enron_spam --n-shot "5" --test-size
+      20 --n-folds 3
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 6d9133d9ad1e996ce5c67ba17c43a5ac
+      size: 2584
+    outs:
+    - path: results/enron_spam/gpt3/5.json
+      md5: fe8bf7257c8ea3c844d8d2d849a77b95
+      size: 43
+  data@8:
+    cmd: "python src/create_data.py --dataset SetFit/enron_spam --n-shot 8 --test-size\
+      \ 100 --n-folds 5 --split train\npython src/create_data.py --dataset SetFit/enron_spam\
+      \ --n-shot 8 --test-size 100 --n-folds 5 --split test\n"
+    deps:
+    - path: src/create_data.py
+      md5: 0f0a1cc1e19d22e20e72d4250a665c40
+      size: 902
+    outs:
+    - path: data/enron_spam/8
+      md5: 15e05302b4e904cb22077830cf1f399e.dir
+      size: 1681223
+      nfiles: 10
+  data@3:
+    cmd: "python src/create_data.py --dataset SetFit/enron_spam --n-shot 3 --test-size\
+      \ 100 --n-folds 5 --split train\npython src/create_data.py --dataset SetFit/enron_spam\
+      \ --n-shot 3 --test-size 100 --n-folds 5 --split test\n"
+    deps:
+    - path: src/create_data.py
+      md5: 0f0a1cc1e19d22e20e72d4250a665c40
+      size: 902
+    outs:
+    - path: data/enron_spam/3
+      md5: 964590180927a0c2bd1965ac89c7f48e.dir
+      size: 1991846
+      nfiles: 10
+  tfidf_svm@5:
+    cmd: python src/train_tfidf_svm.py --data-path SetFit/enron_spam --n-shot "5"
+      --test-size 100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: c1813b90be205cbd8bc99e4bb402b1e1
+      size: 1661
+    outs:
+    - path: results/enron_spam/tfidf_svm/5.json
+      md5: ef421b3aa72337ea11ae5711ea735914
+      size: 220
+  tfidf_svm@8:
+    cmd: python src/train_tfidf_svm.py --data-path SetFit/enron_spam --n-shot "8"
+      --test-size 100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: c1813b90be205cbd8bc99e4bb402b1e1
+      size: 1661
+    outs:
+    - path: results/enron_spam/tfidf_svm/8.json
+      md5: a57f4c888303f72efeeb4d8eae40cbfa
+      size: 218
+  tfidf_svm@all:
+    cmd: python src/train_tfidf_svm.py --data-path SetFit/enron_spam --n-shot "all"
+      --test-size 100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: c1813b90be205cbd8bc99e4bb402b1e1
+      size: 1661
+    outs:
+    - path: results/enron_spam/tfidf_svm/all.json
+      md5: 158e256dbd9cf3ee7176af7de1bdf17a
+      size: 228
+  setfit@5:
+    cmd: python src/train_setfit.py --data-path SetFit/enron_spam --n-shot "5" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 02e6a4090b91f7c58cd45cd505016889
+      size: 1732
+    outs:
+    - path: results/enron_spam/setfit/5.json
+      md5: 0bdc81e8f98aabad811b7ce0f409965e
+      size: 220
+  setfit@16:
+    cmd: python src/train_setfit.py --data-path SetFit/enron_spam --n-shot "16" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 02e6a4090b91f7c58cd45cd505016889
+      size: 1732
+    outs:
+    - path: results/enron_spam/setfit/16.json
+      md5: e88ea5ca1129ee0e092519fa3fc75654
+      size: 220
+  gpt3@8:
+    cmd: python src/evaluate_gpt3.py --data-path SetFit/enron_spam --n-shot "8" --test-size
+      20 --n-folds 3
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 6d9133d9ad1e996ce5c67ba17c43a5ac
+      size: 2584
+    outs:
+    - path: results/enron_spam/gpt3/8.json
+      md5: d751713988987e9331980363e24189ce
+      size: 2
+  gpt3@16:
+    cmd: python src/evaluate_gpt3.py --data-path SetFit/enron_spam --n-shot "16" --test-size
+      20 --n-folds 3
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 6d9133d9ad1e996ce5c67ba17c43a5ac
+      size: 2584
+    outs:
+    - path: results/enron_spam/gpt3/16.json
+      md5: d751713988987e9331980363e24189ce
+      size: 2
+  graph:
+    cmd: python src/create_graph.py --results-path results --figures-path figures
+      --dataset enron_spam
+    deps:
+    - path: results
+      md5: bc908afc8aef9fc4b8e9dd72657fcc05.dir
+      size: 8415
+      nfiles: 51
+    - path: src/create_graph.py
+      md5: e88d7e90e912735571f470339478c2b4
+      size: 2022
+    outs:
+    - path: figures/enron_spam.png
+      md5: c2839fc248e391e4e52702d0e4bf463b
+      size: 28915
+  data@16:
+    cmd: "python src/create_data.py --dataset SetFit/enron_spam --n-shot 16 --test-size\
+      \ 100 --n-folds 5 --split train\npython src/create_data.py --dataset SetFit/enron_spam\
+      \ --n-shot 16 --test-size 100 --n-folds 5 --split test\n"
+    deps:
+    - path: src/create_data.py
+      md5: 0f0a1cc1e19d22e20e72d4250a665c40
+      size: 902
+    outs:
+    - path: data/enron_spam/16
+      md5: a44055a7f855badcff2e121f01f110d3.dir
+      size: 2112340
+      nfiles: 10
+  data@5:
+    cmd: "python src/create_data.py --dataset SetFit/enron_spam --n-shot 5 --test-size\
+      \ 100 --n-folds 5 --split train\npython src/create_data.py --dataset SetFit/enron_spam\
+      \ --n-shot 5 --test-size 100 --n-folds 5 --split test\n"
+    deps:
+    - path: src/create_data.py
+      md5: 0f0a1cc1e19d22e20e72d4250a665c40
+      size: 902
+    outs:
+    - path: data/enron_spam/5
+      md5: 6bc5da641788c0d9210e605ca398d814.dir
+      size: 1694286
+      nfiles: 10

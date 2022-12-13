@@ -1,6 +1,6 @@
 import json
 
-from datasets import load_dataset, Dataset
+from datasets import load_dataset, Dataset, ClassLabel
 
 
 def read_jsonl(data_path):
@@ -29,6 +29,9 @@ def load_data(data_path):
 
     if data_path == "trec":
         dataset = dataset.rename_column("label-coarse", "label")
+    if data_path == "SetFit/enron_spam":
+        label = ClassLabel(num_classes=2, names=["ham", "spam"])
+        dataset = dataset.cast_column("label", label)
     return dataset
 
 

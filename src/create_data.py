@@ -21,6 +21,9 @@ def create_data(
 ):
     data = load_data(dataset)
 
+    if "/" in dataset:
+        # if dataset comes from custom account, keep just the name
+        dataset = dataset.split("/")[1]
     data_dir = os.path.join(data_dir, dataset, str(n_shot))
     Path(data_dir).mkdir(parents=True, exist_ok=True)
 

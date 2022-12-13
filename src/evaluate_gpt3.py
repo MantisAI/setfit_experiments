@@ -84,6 +84,9 @@ def evaluate(
 
         results.append({"fold": fold, "metrics": {"accuracy": score}})
 
+    if "/" in data_path:
+        # if dataset comes from custom account, keep just the name
+        data_path = data_path.split("/")[1]
     results_path = os.path.join(results_dir, data_path, "gpt3")
     Path(results_path).mkdir(parents=True, exist_ok=True)
 

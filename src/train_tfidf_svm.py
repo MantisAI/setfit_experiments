@@ -36,7 +36,7 @@ def train_tfidf_svm(
 
         model = Pipeline(
             [
-                ("tfidf", TfidfVectorizer(min_df=5, max_features=10_000)),
+                ("tfidf", TfidfVectorizer(min_df=3, max_features=10_000)),
                 ("svm", SGDClassifier()),
             ]
         )
@@ -47,6 +47,9 @@ def train_tfidf_svm(
 
         results.append({"fold": fold, "metrics": {"accuracy": score}})
 
+    if "/" in data_path:
+        # if dataset comes from custom account, keep just the name
+        data_path = data_path.split("/")[1]
     results_path = os.path.join(results_dir, data_path, "tfidf_svm")
     Path(results_path).mkdir(parents=True, exist_ok=True)
 

@@ -1,1 +1,1 @@
-[{"fold": 0, "metrics": {"accuracy": 0.36}}, {"fold": 1, "metrics": {"accuracy": 0.34}}, {"fold": 2, "metrics": {"accuracy": 0.32}}, {"fold": 3, "metrics": {"accuracy": 0.31}}, {"fold": 4, "metrics": {"accuracy": 0.31}}]
+[{"fold": 0, "metrics": {"accuracy": 0.45}}, {"fold": 1, "metrics": {"accuracy": 0.48}}, {"fold": 2, "metrics": {"accuracy": 0.42}}, {"fold": 3, "metrics": {"accuracy": 0.34}}, {"fold": 4, "metrics": {"accuracy": 0.29}}]

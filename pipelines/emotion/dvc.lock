@@ -1,0 +1,311 @@
+schema: '2.0'
+stages:
+  tfidf_svm@3:
+    cmd: python src/train_tfidf_svm.py --data-path emotion --n-shot "3" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: c1813b90be205cbd8bc99e4bb402b1e1
+      size: 1661
+    outs:
+    - path: results/emotion/tfidf_svm/3.json
+      md5: 417d2fece8f9927b918065e10fc75d13
+      size: 218
+  tfidf_svm@5:
+    cmd: python src/train_tfidf_svm.py --data-path emotion --n-shot "5" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: c1813b90be205cbd8bc99e4bb402b1e1
+      size: 1661
+    outs:
+    - path: results/emotion/tfidf_svm/5.json
+      md5: 730863515a7a9d1063d94de6b88e34d5
+      size: 220
+  tfidf_svm@8:
+    cmd: python src/train_tfidf_svm.py --data-path emotion --n-shot "8" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: c1813b90be205cbd8bc99e4bb402b1e1
+      size: 1661
+    outs:
+    - path: results/emotion/tfidf_svm/8.json
+      md5: 77b358b595d3a671bbc7ede441616a17
+      size: 220
+  tfidf_svm@16:
+    cmd: python src/train_tfidf_svm.py --data-path emotion --n-shot "16" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: c1813b90be205cbd8bc99e4bb402b1e1
+      size: 1661
+    outs:
+    - path: results/emotion/tfidf_svm/16.json
+      md5: a354744b124cf5dfdeedf4da354b5cc2
+      size: 220
+  tfidf_svm@all:
+    cmd: python src/train_tfidf_svm.py --data-path emotion --n-shot "all" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: c1813b90be205cbd8bc99e4bb402b1e1
+      size: 1661
+    outs:
+    - path: results/emotion/tfidf_svm/all.json
+      md5: 41000e21a3939685f98fed6f038d27a7
+      size: 227
+  setfit@3:
+    cmd: python src/train_setfit.py --data-path emotion --n-shot "3" --test-size 100
+      --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 02e6a4090b91f7c58cd45cd505016889
+      size: 1732
+    outs:
+    - path: results/emotion/setfit/3.json
+      md5: 5cd9c2cf9aad989db1811b59785386da
+      size: 219
+  setfit@5:
+    cmd: python src/train_setfit.py --data-path emotion --n-shot "5" --test-size 100
+      --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 02e6a4090b91f7c58cd45cd505016889
+      size: 1732
+    outs:
+    - path: results/emotion/setfit/5.json
+      md5: 43985fd26516a87df4bb23b43c150d28
+      size: 218
+  setfit@8:
+    cmd: python src/train_setfit.py --data-path emotion --n-shot "8" --test-size 100
+      --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 02e6a4090b91f7c58cd45cd505016889
+      size: 1732
+    outs:
+    - path: results/emotion/setfit/8.json
+      md5: 6fce727e552018626e3b5ac7ebd503fa
+      size: 220
+  setfit@16:
+    cmd: python src/train_setfit.py --data-path emotion --n-shot "16" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 02e6a4090b91f7c58cd45cd505016889
+      size: 1732
+    outs:
+    - path: results/emotion/setfit/16.json
+      md5: 03b28f5e17c64454b62f2d0dc62d5722
+      size: 220
+  gpt3@3:
+    cmd: python src/evaluate_gpt3.py --data-path emotion --n-shot "3" --test-size
+      20 --n-folds 3
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 6d9133d9ad1e996ce5c67ba17c43a5ac
+      size: 2584
+    outs:
+    - path: results/emotion/gpt3/3.json
+      md5: 7247b619b3b6bf7e2763169e0c8ae830
+      size: 132
+  gpt3@5:
+    cmd: python src/evaluate_gpt3.py --data-path emotion --n-shot "5" --test-size
+      20 --n-folds 3
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 6d9133d9ad1e996ce5c67ba17c43a5ac
+      size: 2584
+    outs:
+    - path: results/emotion/gpt3/5.json
+      md5: a412b4ea17f59f0ef9f173351b939829
+      size: 130
+  gpt3@8:
+    cmd: python src/evaluate_gpt3.py --data-path emotion --n-shot "8" --test-size
+      20 --n-folds 3
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 6d9133d9ad1e996ce5c67ba17c43a5ac
+      size: 2584
+    outs:
+    - path: results/emotion/gpt3/8.json
+      md5: 35fc4dadac3b0be4d0295bac56970901
+      size: 131
+  gpt3@16:
+    cmd: python src/evaluate_gpt3.py --data-path emotion --n-shot "16" --test-size
+      20 --n-folds 3
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 6d9133d9ad1e996ce5c67ba17c43a5ac
+      size: 2584
+    outs:
+    - path: results/emotion/gpt3/16.json
+      md5: ddc1e36ea67dc54a73a239ca1ba21bfe
+      size: 130
+  data@8:
+    cmd: "python src/create_data.py --dataset emotion --n-shot 8 --test-size 100 --n-folds\
+      \ 5 --split train\npython src/create_data.py --dataset emotion --n-shot 8 --test-size\
+      \ 100 --n-folds 5 --split test\n"
+    deps:
+    - path: src/create_data.py
+      md5: 0f0a1cc1e19d22e20e72d4250a665c40
+      size: 902
+    outs:
+    - path: data/emotion/8
+      md5: 68149cd8720adc1be5fd3ed1af7684d5.dir
+      size: 85552
+      nfiles: 10
+  graph:
+    cmd: python src/create_graph.py --results-path results --figures-path figures
+      --dataset emotion
+    deps:
+    - path: results
+      md5: bc908afc8aef9fc4b8e9dd72657fcc05.dir
+      size: 8415
+      nfiles: 51
+    - path: src/create_graph.py
+      md5: e88d7e90e912735571f470339478c2b4
+      size: 2022
+    outs:
+    - path: figures/emotion.png
+      md5: 8a230895b8bdef67f408355bf629b0f7
+      size: 40687
+  data@3:
+    cmd: "python src/create_data.py --dataset emotion --n-shot 3 --test-size 100 --n-folds\
+      \ 5 --split train\npython src/create_data.py --dataset emotion --n-shot 3 --test-size\
+      \ 100 --n-folds 5 --split test\n"
+    deps:
+    - path: src/create_data.py
+      md5: 0f0a1cc1e19d22e20e72d4250a665c40
+      size: 902
+    outs:
+    - path: data/emotion/3
+      md5: d24d0ef5e1b73563a9d1e935c4717888.dir
+      size: 69067
+      nfiles: 10
+  data@5:
+    cmd: "python src/create_data.py --dataset emotion --n-shot 5 --test-size 100 --n-folds\
+      \ 5 --split train\npython src/create_data.py --dataset emotion --n-shot 5 --test-size\
+      \ 100 --n-folds 5 --split test\n"
+    deps:
+    - path: src/create_data.py
+      md5: 0f0a1cc1e19d22e20e72d4250a665c40
+      size: 902
+    outs:
+    - path: data/emotion/5
+      md5: c0d394e04928438469a51d96055d5839.dir
+      size: 73880
+      nfiles: 10
+  data@16:
+    cmd: "python src/create_data.py --dataset emotion --n-shot 16 --test-size 100\
+      \ --n-folds 5 --split train\npython src/create_data.py --dataset emotion --n-shot\
+      \ 16 --test-size 100 --n-folds 5 --split test\n"
+    deps:
+    - path: src/create_data.py
+      md5: 0f0a1cc1e19d22e20e72d4250a665c40
+      size: 902
+    outs:
+    - path: data/emotion/16
+      md5: e51b8d46da0cb6fc766e5070d37ec787.dir
+      size: 113367
+      nfiles: 10
+  tfidf_svm@32:
+    cmd: python src/train_tfidf_svm.py --data-path emotion --n-shot "32" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 75db88ee99892d2aaf096f43a23178c8
+      size: 1525
+    outs:
+    - path: results/emotion/tfidf_svm/32.json
+      md5: 4406a6aefc1dfb27052a00762ffd532d
+      size: 219
+  tfidf_svm@64:
+    cmd: python src/train_tfidf_svm.py --data-path emotion --n-shot "64" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 75db88ee99892d2aaf096f43a23178c8
+      size: 1525
+    outs:
+    - path: results/emotion/tfidf_svm/64.json
+      md5: 4871aa04d550920c963663016d568780
+      size: 220
+  tfidf_svm@128:
+    cmd: python src/train_tfidf_svm.py --data-path emotion --n-shot "128" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 75db88ee99892d2aaf096f43a23178c8
+      size: 1525
+    outs:
+    - path: results/emotion/tfidf_svm/128.json
+      md5: e8ef054b365219992d2d15ecf30c1643
+      size: 219
+  tfidf_svm@256:
+    cmd: python src/train_tfidf_svm.py --data-path emotion --n-shot "256" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 75db88ee99892d2aaf096f43a23178c8
+      size: 1525
+    outs:
+    - path: results/emotion/tfidf_svm/256.json
+      md5: 5798b94812edc2978cdca409b1ede169
+      size: 220
+  tfidf_svm@512:
+    cmd: python src/train_tfidf_svm.py --data-path emotion --n-shot "512" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_tfidf_svm.py
+      md5: 75db88ee99892d2aaf096f43a23178c8
+      size: 1525
+    outs:
+    - path: results/emotion/tfidf_svm/512.json
+      md5: f3bbaaae79b0d2b55f884e291ab492b0
+      size: 220
+  setfit@64:
+    cmd: python src/train_setfit.py --data-path emotion --n-shot "64" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 43818491057c1c01dacb0d32932d6506
+      size: 1596
+    outs:
+    - path: results/emotion/setfit/64.json
+      md5: 5dc4adc6e6dc9d024398faf2231c3bd9
+      size: 219
+  setfit@32:
+    cmd: python src/train_setfit.py --data-path emotion --n-shot "32" --test-size
+      100 --n-folds 5
+    deps:
+    - path: src/train_setfit.py
+      md5: 43818491057c1c01dacb0d32932d6506
+      size: 1596
+    outs:
+    - path: results/emotion/setfit/32.json
+      md5: 9cbadaa74c343e726d458d8fb21d4a92
+      size: 220
+  gpt3@32:
+    cmd: python src/evaluate_gpt3.py --data-path emotion --n-shot "32" --test-size
+      20 --n-folds 3
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 259d331f88f1e7ba20d25202debc85e3
+      size: 2448
+    outs:
+    - path: results/emotion/gpt3/32.json
+      md5: d751713988987e9331980363e24189ce
+      size: 2
+  gpt3@64:
+    cmd: python src/evaluate_gpt3.py --data-path emotion --n-shot "64" --test-size
+      20 --n-folds 3
+    deps:
+    - path: src/evaluate_gpt3.py
+      md5: 259d331f88f1e7ba20d25202debc85e3
+      size: 2448
+    outs:
+    - path: results/emotion/gpt3/64.json
+      md5: d751713988987e9331980363e24189ce
+      size: 2

@@ -35,7 +35,7 @@ stages:
       - 8
       - 16
     do:
-      cmd: python src/evaluate_gpt3.py --data-path ag_news --n-shot "${item}" --test-size 20 --n-folds 3
+      cmd: python src/evaluate_gpt3.py --data-path ag_news --n-shot "${item}" --test-size 40 --n-folds 3
       wdir: ../..
       deps:
         - src/evaluate_gpt3.py

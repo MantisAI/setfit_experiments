@@ -1,0 +1,69 @@
+stages:
+  tfidf_svm:
+    foreach:
+      - 3
+      - 5
+      - 8
+      - 16
+      - all
+    do:
+      cmd: python src/train_tfidf_svm.py --data-path emotion --n-shot "${item}" --test-size 100 --n-folds 5
+      wdir: ../..
+      deps:
+        - src/train_tfidf_svm.py
+      outs:
+        - results/emotion/tfidf_svm/${item}.json:
+            cache: false
+  setfit:
+    foreach:
+      - 3
+      - 5
+      - 8
+      - 16
+    do:
+      cmd: python src/train_setfit.py --data-path emotion --n-shot "${item}" --test-size 100 --n-folds 5
+      wdir: ../..
+      deps:
+        - src/train_setfit.py
+      outs:
+        - results/emotion/setfit/${item}.json:
+            cache: false
+  gpt3:
+    foreach:
+      - 3
+      - 5
+      - 8
+      - 16
+    do:
+      cmd: python src/evaluate_gpt3.py --data-path emotion --n-shot "${item}" --test-size 20 --n-folds 3
+      wdir: ../..
+      deps:
+        - src/evaluate_gpt3.py
+      outs:
+        - results/emotion/gpt3/${item}.json:
+            cache: false
+  graph:
+    cmd: python src/create_graph.py --results-path results --figures-path figures --dataset emotion
+    wdir: ../..
+    deps:
+      - src/create_graph.py
+      - results
+    outs:
+      - figures/emotion.png:
+          cache: false
+
+  data:
+    foreach:
+      - 3
+      - 5
+      - 8
+      - 16
+    do:
+      cmd: |
+        python src/create_data.py --dataset emotion --n-shot ${item} --test-size 100 --n-folds 5 --split train
+        python src/create_data.py --dataset emotion --n-shot ${item} --test-size 100 --n-folds 5 --split test
+      wdir: ../..
+      deps:
+        - src/create_data.py
+      outs:
+        - data/emotion/${item}
